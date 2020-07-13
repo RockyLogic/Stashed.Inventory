@@ -1,0 +1,9 @@
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: black;
+    font-family: 'Roboto', sans-serif;
+    color:white;
+}
