@@ -6,26 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--Webs Page Icon-->
-    <link rel="icon" href="../public/images/tks.jpg">
+    <link rel="icon" href="../public/images/Icon2.png">
     <!-- Google Fonts - Roboto -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <!--BootStrap 4-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../public/css/main.css">
-    <link rel="stylesheet" href="../public/landing/landing.css">
+    <link rel="stylesheet" href="../public/css/landing.css">
 
-    <title>Stashed Inventory</title>
+    <title>Stashed</title>
 </head>
 
 <body>
     <nav id="navbar" class="align-middle navbar navbar-dark navbar-expand-md fixed-top">
         <a id="navbar-logo" class="navbar-brand" href="#">
-            <img src="../public/images/Icon2.png" width="30" height="30" class="align-middle">
-            <span>Stashed.io</span>
+            <img src="../public/images/Icon2.png" width="50" height="50" class="align-middle">
         </a>
 
+        <!--Collapse Nav When Dimensions Shrink-->
+        <button class="navbar-toggler custom-toggler" data-toggle="collapse" data-target="#navLinks">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--NavBar Links-->
+        <div id="navLinks" class="collapse navbar-collapse">
+            <!--Right Side Nav Bar-->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#feature">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#portfolio">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#portfolio">FAQ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Help</a>
+                </li>
+                <li id="discordLogin">
+                    <a class="discordLogin nav-link" href="#dashboard">Dashboard</a>
+                </li>
+            </ul>
+        </div>
     </nav>
+
+    <section id="home">
+        <div class="container">
+            <img id="home-img" class="mx-auto img-fluid" src="../public/images/Icon2.png">
+            <div id="home-title" class="mx-auto">Stashed.io
+                <span style="color: rgb(108, 196, 255);">Inventory</span>
+            </div>
+            <div id="home-text" class="text-align-center">Manage inventory, log transactions, take profit. Say goodbye
+                to
+                the
+                spreadsheet.</div>
+            <button type="button" class="btn btn-success mx-auto d-flex">Success</button>
+    </section>
+    </div>
+    <section id="home">
+
+    </section>
 </body>
 
 </html>

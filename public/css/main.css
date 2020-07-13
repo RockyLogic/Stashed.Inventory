@@ -3,7 +3,20 @@ html{
 }
 
 body{
-    background-color: black;
+    background-color: rgb(27, 27, 38);
     font-family: 'Roboto', sans-serif;
     color:white;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: rgb(37, 37, 37);
+    border-radius: 20px;
+}
+  
+body::-webkit-scrollbar-track {
+    background: rgb(27, 27, 38);
 }
