@@ -29,7 +29,7 @@
 }
 
 #home{
-    height: 100vh;
+    height: 98vh;
     width: calc(100vw-10px);
 }
 
@@ -47,9 +47,51 @@
 }
 
 #home-text{
+    text-align: center;
     padding-bottom: 1vh;
     color: grey;
-    text-align: center;
     font-size: 25px;
     font-weight: 400;
+}
+
+#home-buy-button{
+    margin-top: 3vh;
+    outline: none;
+    border: none;
+    background-color: rgb(40, 220, 130)
+}
+
+#home-buy-button:hover{
+    background-color: rgb(0, 255, 100)
+}
+
+#home-buy-button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+#features{
+    height: 98vh;
+    width: calc(100vw-10px);
+    background-color: rgb(27, 27, 38);
+}
+
+#footer {
+    height: 150px;
+    width: calc(100vw-10px);
+    color:white;
+}
+
+.footer-text{
+    margin: 0px 5vw;
+    display: flex;
+    font-weight: 200;
+    height: 100%;
+    width: 100%;
+}
+
+.divider{
+    height: 10px;
+    background: white; 
+    border-radius: 5px;
 }
