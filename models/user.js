@@ -8,6 +8,10 @@ var userSchema = mongoose.Schema({
     discordID: {
         type: String,
         required: true
+    },
+    discordImage: {
+        type: String,
+        required: true
     }
 })
 

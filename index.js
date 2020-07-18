@@ -10,9 +10,10 @@ app.use(favicon(path.join(__dirname, "public", "images", "Icon2.png")))
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "./public"));
 
+app.use('/api/discord', require('./api/discord'));
 
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/views/landing.html")
+    res.status(200).sendFile(__dirname + "/views/landing.html")
 })
 
 app.listen(port, () => {

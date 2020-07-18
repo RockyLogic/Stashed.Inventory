@@ -6,6 +6,7 @@ body{
     background-color: rgb(27, 27, 38);
     font-family: 'Roboto', sans-serif;
     color:white;
+    height: 100%;
 }
 
 body::-webkit-scrollbar {

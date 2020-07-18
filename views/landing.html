@@ -12,8 +12,8 @@
     <!--BootStrap 4-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../public/css/main.css">
-    <link rel="stylesheet" href="../public/css/landing.css">
+    <link rel="stylesheet" type="text/css" href="../public/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../public/css/landing.css">
 
     <title>Stashed</title>
 </head>
@@ -49,28 +49,30 @@
                     <a class="nav-link" href="#contact">Help</a>
                 </li>
                 <li id="discordLogin">
-                    <a class="discordLogin nav-link" href="#dashboard">Dashboard</a>
+                    <a class="discordLogin nav-link" href="/api/discord/login">Dashboard</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <section id="home">
+    <section id=" home">
         <div class="container">
             <img id="home-img" class="mx-auto img-fluid" src="../public/images/Icon2.png">
             <div id="home-title" class="mx-auto">Stashed.io
                 <span style="color: rgb(70, 180, 255);">Inventory</span>
             </div>
-            <div id="home-text" class="justify-content-center d-none d-sm-flex">Manage inventory, log transactions,
+            <div id="home-text" class="justify-content-center d-none d-sm-flex">Manage inventory, log
+                transactions,
                 take profit. Say goodbye to the spreadsheet.
             </div>
-            <button id="home-buy-button" type="button" class="btn mx-auto d-flex">Buy Now $5/Month</button>
+            <button id="home-buy-button" type="button" class="btn mx-auto d-flex"><strong>Buy Now
+                    $5/Month</strong></button>
         </div>
     </section>
 
     <section id="features">
         <div class="container">
-            <hr class="divider align-self-start">
+            <hr class="divider d-flex align-self-start">
         </div>
     </section>
 
