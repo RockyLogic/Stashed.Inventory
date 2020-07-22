@@ -29,7 +29,7 @@
 }
 
 #home{
-    height: 99vh;
+    height: 100vh;
     width: calc(100vw-10px);
 }
 
@@ -55,7 +55,7 @@
 }
 
 #home-buy-button{
-    margin-top: 3vh;
+    margin: 3vh 0 5vh 0;
     outline: none;
     border: none;
     background-color: rgb(40, 220, 130)

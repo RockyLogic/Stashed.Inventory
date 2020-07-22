@@ -12,7 +12,7 @@ var userSchema = mongoose.Schema({
     discordImage: {
         type: String,
         required: true
-    }
+    }   
 })
 
 module.exports = mongoose.model("User", userSchema)

@@ -1,0 +1,15 @@
+#inventory {
+    height: 100vh;
+}
+
+#inventory-list{
+    height: 75%;
+    width: 80%;
+    background-color: rgb(46, 46, 46);
+}
+
+#inventory-stat{
+    height: 75%;
+    width: 80%;
+    background-color: rgb(46, 46, 46);
+}

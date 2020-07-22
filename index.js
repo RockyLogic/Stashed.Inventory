@@ -16,6 +16,9 @@ app.get("/", (req, res) => {
     res.status(200).sendFile(__dirname + "/views/landing.html")
 })
 
+app.get("/inventory", (req, res) => {
+    res.status(200).render("inventory")
+})
 app.listen(port, () => {
     sendToLogs(`Operating on port: ${port}`)
 })

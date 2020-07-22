@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 const mongoose = require('mongoose');
+const User = require('../models/user')
 const { catchAsync } = require('../misc/catchAsync');
 
 require(`dotenv`).config();
@@ -52,6 +53,34 @@ router.get('/callback', catchAsync(async (req, res) => {
     const userInfo = await userInfoJSON.json();
     console.log(userInfo);
     res.redirect(`/`);
+
+    var newUser = {
+        name: userInfo.username + "#" + userInfo.discriminator,
+        discordID: userInfo.id,
+        discordImage: "https://cdn.discordapp.com/avatars/" + userInfo.id + "/" + userInfo.avatar + ".png"
+    }
+
+    User.find({ discordID: userInfo.id }, (err, userFound) => {
+        if (err) {
+            return console.log("Error Finding Discord User");
+        }
+        if (userFound) {
+            //Login
+            console.log("Log in here")
+        } else {
+            //creates a new user
+            User.create(newUser, function (err, createdNewUser) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("New User Created");
+                    res.redirect("/");
+                }
+            })
+            //Login
+        }
+
+    })
 }));
 
 module.exports = router;
