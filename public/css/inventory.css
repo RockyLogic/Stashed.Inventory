@@ -28,9 +28,19 @@ h2{
 .inventory-item{
     width: 98%;
     height: 100px;
-    color: #7988F2;
+    color: grey;
     padding: 15px 30px;
     margin-bottom: 10px;
     border-radius: 30px;
     background-color: #2D2F49;
+}
+
+.item-title{
+    color: #7988F2;
+    font-size: 18px;
+}
+
+.item-price{
+    color: white;
+    font-size: 18px;
 }
