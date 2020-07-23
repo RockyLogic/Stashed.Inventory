@@ -9,15 +9,16 @@ body{
     height: 100%;
 }
 
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 10px;
 }
 
-body::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: rgb(37, 37, 37);
     border-radius: 20px;
 }
   
-body::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background: rgb(27, 27, 38);
+    border-radius: 20px;
 }
