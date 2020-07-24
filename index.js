@@ -6,19 +6,22 @@ var express = require("express"),
 
 port = process.env.PORT || 3000
 
+app.set("view engine", "ejs")
 app.use(favicon(path.join(__dirname, "public", "images", "Icon2.png")))
-app.set("view engine", "ejs");
-app.use(express.static(__dirname + "./public"));
+app.use(express.static(__dirname + "./public"))
 
-app.use('/api/discord', require('./api/discord'));
+//Routes
+app.use('/api/discord', require('./api/discord'))
+app.use('/item', require("./routes/item"))
 
 app.get("/", (req, res) => {
     res.status(200).sendFile(__dirname + "/views/landing.html")
 })
 
 app.get("/inventory", (req, res) => {
-    res.status(200).sendFile(__dirname + "/views/inventory.html")
+    res.status(200).sendFile(path.join(__dirname, '..', 'views', 'inventory.html'))
 })
+
 app.listen(port, () => {
     sendToLogs(`Operating on port: ${port}`)
 })

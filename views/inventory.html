@@ -46,8 +46,13 @@
         <div class="container-fluid d-flex justify-content-center" style="height: 100%;">
             <div class="row align-items-center justify-content-around" style="width:100%;">
                 <div id="inventory-list" class="inventory-block col-12 col-md-6 col-xl-4">
-                    <h2 id="inventory-header">Inventory</h2>
-                    <div class="inventory-item-list">
+                    <div class="d-flex">
+                        <h4>Inventory</h4>
+                        <button class="btn ml-auto mr-3" style="height: 20px; width: 20px;">
+                            <i class="fa fa-plus fa-lg" aria-hidden="true" style="color:white;"></i>
+                        </button>
+                    </div>
+                    <div class="inventory-scroll-list">
 
                         <!-- Each Item -->
                         <div class="inventory-item">
@@ -58,8 +63,8 @@
 
                             <div class="d-flex">
                                 <div>
-                                    <div><strong>Size: 6.5</strong></div>
-                                    <div><strong>Date: 07/22/2020</strong></div>
+                                    <div class="item-info"><strong>Size: 6.5</strong></div>
+                                    <div class="item-info"><strong>Date: 07/22/2020</strong></div>
                                 </div>
 
                                 <div class="ml-auto align-self-end align-items-center">
@@ -71,15 +76,19 @@
                             </div>
 
                         </div>
+                        <!-- Each Item -->
 
                     </div>
                 </div>
                 <div id="sale-list" class="inventory-block col-12 col-md-5 col-xl-4">
-                    <h2>Sales</h2>
+                    <h4>Sales</h4>
+                    <div class="inventory-scroll-list">
+
+                    </div>
                 </div>
 
                 <div id="statistic" class="inventory-block col-12 col-md-11 col-xl-3">
-                    <h2>Statistics</h2>
+                    <h4>Statistics</h4>
                 </div>
             </div>
         </div>

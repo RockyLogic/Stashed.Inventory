@@ -12,11 +12,11 @@
 }
 
 /* item colors #2D2F49 */
-h2{
-    margin-bottom: 30px;
+h4{
+    margin-bottom: 20px;
 }
 
-.inventory-item-list{
+.inventory-scroll-list{
     width: 100%;
     height: 90%;
     overflow: scroll;
@@ -27,9 +27,9 @@ h2{
 
 .inventory-item{
     width: 98%;
-    height: 100px;
+    height: 75px;
     color: grey;
-    padding: 15px 30px;
+    padding: 10px 20px;
     margin-bottom: 10px;
     border-radius: 30px;
     background-color: #2D2F49;
@@ -37,10 +37,14 @@ h2{
 
 .item-title{
     color: #7988F2;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .item-price{
     color: white;
-    font-size: 18px;
+    font-size: 16px;
+}
+
+.item-info{
+    font-size: 12px;
 }
