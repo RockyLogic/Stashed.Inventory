@@ -1,10 +1,12 @@
 var express = require("express"),
     app = express(),
     path = require('path'),
+    Item = require('./models/item'),
     env = require('dotenv').config({ path: path.join(__dirname, '..', '.env') }),
     mongoose = require("mongoose"),
     passport = require("passport"),
     favicon = require('serve-favicon'),
+    bodyParser = require("body-parser"),
     session = require("express-session"),
     sendToLogs = require("./misc/sendToLog"),
     methodOverride = require("method-override"),
@@ -14,7 +16,7 @@ port = process.env.PORT || 3000
 const redirect = process.env.REDIRECT
 console.log(redirect);
 // Connects to database
-mongoose.connect("mongodb://localhost:27017/StashedInventory", {
+mongoose.connect(process.env.MONGODB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
@@ -22,8 +24,10 @@ mongoose.connect("mongodb://localhost:27017/StashedInventory", {
 
 
 //NPM setup
-app.set("view engine", "ejs")
-app.use(methodOverride("_method"));
+app.set('views', './src/views');
+app.set("view engine", "ejs");
+app.use(methodOverride("_method"))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(favicon(path.join(__dirname, "public", "images", "Icon2.png")))
 app.use(express.static(__dirname + "./public"))
 
@@ -54,7 +58,8 @@ app.get("/", (req, res) => {
 
 // Inventory
 app.get("/inventory", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, '..', 'views', 'inventory.html'))
+    res.status(200).render("inventory.ejs", { currentUser: req.user })
+
 })
 
 // Initate

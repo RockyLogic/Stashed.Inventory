@@ -33,10 +33,12 @@
             <!--Right Side Nav Bar-->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#faq">FAQ</a>
+                    <a class="nav-link" href="">
+                        <img src="<%= currentUser.discordImage %>" style="border-radius: 25px" width="50" height="50">
+                    </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Help</a>
+                <li class="nav-item d-flex">
+                    <h5 class="align-self-center"><%= currentUser.name %></h5>
                 </li>
             </ul>
         </div>
@@ -48,7 +50,7 @@
                 <div id="inventory-list" class="inventory-block col-12 col-md-6 col-xl-4">
                     <div class="d-flex">
                         <h4>Inventory</h4>
-                        <button class="btn ml-auto mr-3" style="height: 20px; width: 20px;">
+                        <button type="button" class="btn ml-auto mr-1" style="height: 20px; width: 20px;">
                             <i class="fa fa-plus fa-lg" aria-hidden="true" style="color:white;"></i>
                         </button>
                     </div>
