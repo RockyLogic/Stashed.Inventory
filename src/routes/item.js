@@ -16,12 +16,15 @@ mongoose.connect(process.env.MONGODB, {
 
 // new item
 router.post("/", (req, res) => {
+
+    let now = new Date()
+    let formattedDate = now.getDate() + '/' + (now.getMonth() + 1) + '/' + now.getFullYear()
     var name = req.body.name;
     var purchasedPrice = req.body.price;
-    var purchasedDate = req.body.date;
+    var purchasedDate = req.body.date || formattedDate;
     var author = {
         id: req.user._id,
-        username: req.user.name
+        name: req.user.name
     }
 
     var newItem = {
@@ -38,6 +41,7 @@ router.post("/", (req, res) => {
             res.redirect("/inventory")
         }
     })
+    console.log("New Item Created")
 })
 
 // update

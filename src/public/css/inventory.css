@@ -48,3 +48,7 @@ h4{
 .item-info{
     font-size: 12px;
 }
+
+.no-outline:focus{
+    outline: none;
+}

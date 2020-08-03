@@ -10,12 +10,15 @@ var itemSchema = mongoose.Schema({
         required: true
     },
     purchasedDate: {
-        type: Date,
-        default: Date.now
+        type: String,
+        required: true
     },
     author: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        name: String,
     }
 })
 
