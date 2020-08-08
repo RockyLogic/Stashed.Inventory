@@ -55,122 +55,69 @@
                     <div class="d-flex">
                         <h4>Inventory</h4>
 
-                        <!-- Add new inventory button -->
-                        <button type="button" class="btn ml-auto mr-1 no-outline" data-toggle="modal"
-                            data-target="#createNewItem" style="height: 20px; width: 20px;">
-                            <i class="fa fa-plus fa-lg" aria-hidden="true" style="color:white;"></i>
-                        </button>
+                        <%- include("./newItemModal") %>
 
-                        <!-- Add new inventory modal -->
-                        <form action="/item" method="POST">
-                            <div class="modal fade" id="createNewItem" tabindex="-1" role="dialog">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
 
-                                        <!-- modal header -->
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="modalLabel">New Inventory</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true" style="color: white;">&times;</span>
+                        <div class="inventory-scroll-list">
+                            <!-- Each Item -->
+                            <% itemList.forEach((item) => { %>
+                            <div class="inventory-item">
+
+                                <div class="d-flex">
+                                    <div class="item-title"><Strong><%=item.name%></Strong></div>
+                                    <div class="ml-auto item-price"><strong>$<%=item.purchasedPrice%></strong></div>
+                                </div>
+
+                                <div class="d-flex">
+                                    <div>
+                                        <div class="item-info"><strong>Size: <%=item.size%></strong></div>
+                                        <div class="item-info"><strong>Date: <%=item.purchasedDate%></strong></div>
+                                    </div>
+
+                                    <div id="edit-links" class=" ml-auto align-self-end
+                                    align-items-center d-flex">
+                                        <button class="btn"><i class=" fa fa-pencil-square-o ml-3" aria-hidden="true"
+                                                style="color: gray"></i></button>
+
+                                        <form action="/item/<%=item._id%>/clone" method="POST"
+                                            style="margin-block-end: 0;">
+                                            <button class="btn">
+                                                <i class="fa fa-clone ml-3" aria-hidden="true" style="color: gray"></i>
                                             </button>
-                                        </div>
+                                        </form>
 
-                                        <!-- modal body -->
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label for="recipient-name" class="col-form-label"
-                                                    style="color: lightslategray"><strong>Name</strong></label>
-                                                <input name="name" type="text" class="form-control" id="recipient-name"
-                                                    placeholder="Name">
-                                            </div>
-                                            <div class="form-group row d-flex justify-content-between"
-                                                style="padding: 0 1rem;">
-                                                <div class="form-group">
-                                                    <label for="size-text" class="col-form-label"
-                                                        style="color: lightslategray"><strong>Size</strong></label>
-                                                    <input name="size" type="text" class="form-control" id="size-text"
-                                                        placeholder="Size">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="message-text" class="col-form-label"
-                                                        style="color: lightslategray"><strong>Price</strong></label>
-                                                    <input name="price" type="text" class="form-control"
-                                                        id="message-text" placeholder="Price">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="date-text" class="col-form-label"
-                                                        style="color: lightslategray"><strong>Date</strong></label>
-                                                    <input name="date" type="text" class="form-control" id="date-text"
-                                                        value="<%= date%>">
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <button class="btn">
+                                            <i class="fa fa-usd ml-3" aria-hidden="true"
+                                                style="color: rgb(71, 187, 115)"></i>
+                                        </button>
 
-                                        <!-- modal footer -->
-                                        <div class="modal-footer">
-                                            <div class="form-group">
-                                                <button type="button" class="btn"
-                                                    style="background-color: lightslategray;"
-                                                    data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn"
-                                                    style="background-color: rgb(121, 136, 242); color:white;">Add To
-                                                    Inventory</button>
-                                            </div>
-                                        </div>
 
+                                        <form action="/item/<%=item._id%>?_method=DELETE" method="POST"
+                                            style="margin-block-end: 0;">
+                                            <button class="btn">
+                                                <i class="fa fa-trash ml-3" aria-hidden="true" style="color: red"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
+
                             </div>
-                        </form>
+                            <% }) %>
+                            <!-- Each Item -->
+                        </div>
                     </div>
-
-
-                    <div class="inventory-scroll-list">
-                        <!-- Each Item -->
-                        <% itemList.forEach((item) => { %>
-                        <div class="inventory-item">
-
-                            <div class="d-flex">
-                                <div class="item-title"><Strong><%=item.name%></Strong></div>
-                                <div class="ml-auto item-price"><strong>$<%=item.purchasedPrice%></strong></div>
-                            </div>
-
-                            <div class="d-flex">
-                                <div>
-                                    <div class="item-info"><strong>Size: <%=item.size%></strong></div>
-                                    <div class="item-info"><strong>Date: <%=item.purchasedDate%></strong></div>
-                                </div>
-
-                                <div id="edit-links" class=" ml-auto align-self-end
-                                    align-items-center d-flex">
-                                    <button class="btn"><i class=" fa fa-pencil-square-o ml-3" aria-hidden="true"
-                                            style="color: gray"></i></button>
-                                    <button class="btn"><i class="fa fa-clone ml-3" aria-hidden="true"
-                                            style="color: gray"></i></button>
-                                    <button class="btn"><i class="fa fa-usd ml-3" aria-hidden="true"
-                                            style="color: rgb(71, 187, 115)"></i></button>
-                                    <button class="btn"><i class="fa fa-trash ml-3" aria-hidden="true"
-                                            style="color: red"></i></button>
-                                </div>
-                            </div>
+                    <div id="sale-list" class="inventory-block col-12 col-lg-5 col-xl-3">
+                        <h4>Sales</h4>
+                        <div class="inventory-scroll-list">
 
                         </div>
-                        <% }) %>
-                        <!-- Each Item -->
                     </div>
-                </div>
-                <div id="sale-list" class="inventory-block col-12 col-lg-5 col-xl-3">
-                    <h4>Sales</h4>
-                    <div class="inventory-scroll-list">
 
+                    <div id="statistic" class="inventory-block col-12 col-lg-11 col-xl-4">
+                        <h4>Statistics</h4>
                     </div>
-                </div>
-
-                <div id="statistic" class="inventory-block col-12 col-lg-11 col-xl-4">
-                    <h4>Statistics</h4>
                 </div>
             </div>
-        </div>
     </section>
 
     <!-- Scripts -->

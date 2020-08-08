@@ -43,6 +43,39 @@ router.post("/", (req, res) => {
     })
 })
 
+
+//clone item
+router.post("/:id/clone", (req, res) => {
+
+    var newItem = {}
+
+    Item.findById(req.params.id, (err, foundItem) => {
+        let formattedDate = getDate()
+        const name = foundItem.name;
+        const size = foundItem.size;
+        const purchasedPrice = foundItem.purchasedPrice;
+        const purchasedDate = foundItem.purchasedDate || formattedDate;
+        const author = foundItem.author
+
+
+        var newItem = {
+            name,
+            size,
+            purchasedPrice,
+            purchasedDate,
+            author
+        }
+
+        Item.create(newItem, (err, createdItem) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.redirect("/inventory")
+            }
+        })
+    })
+})
+
 // update
 router.patch("/:id", (req, res) => {
     Item.findByIdAndUpdate(req.params.id, req.body.item, (err, updatedItem) => {
@@ -50,14 +83,13 @@ router.patch("/:id", (req, res) => {
     })
 })
 
-router.delete("/:id/delete", (req, res) => {
+router.delete("/:id", (req, res) => {
     Item.findByIdAndRemove(req.params.id, (err) => {
         if (err) {
             res.redirect("/inventory")
-            console.log(`[Data Base] Failed To Delete: ${req.params.id}`);
+            console.log(`[Data Base] Failed To Delete: ${req.params.id}`)
         } else {
             res.redirect("/inventory")
-            console.log(`[Data Base] Successfully Deleted: ${req.params.id}`);
         }
     })
 })
