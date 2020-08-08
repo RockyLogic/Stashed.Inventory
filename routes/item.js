@@ -4,6 +4,7 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const User = require('../models/user')
 const Item = require('../models/item')
+const getDate = require('../misc/getDate')
 
 require(`dotenv`).config();
 
@@ -17,18 +18,17 @@ mongoose.connect(process.env.MONGODB, {
 // new item
 router.post("/", (req, res) => {
 
-    let now = new Date()
-    let formattedDate = now.getDate() + '/' + (now.getMonth() + 1) + '/' + now.getFullYear()
-    var name = req.body.name;
-    var purchasedPrice = req.body.price;
-    var purchasedDate = req.body.date || formattedDate;
-    var author = {
-        id: req.user._id,
-        name: req.user.name
-    }
+    let formattedDate = getDate()
+    const name = req.body.name;
+    const size = req.body.size;
+    const purchasedPrice = req.body.price;
+    const purchasedDate = req.body.date || formattedDate;
+    const author = req.user._id
+
 
     var newItem = {
         name,
+        size,
         purchasedPrice,
         purchasedDate,
         author
@@ -41,7 +41,6 @@ router.post("/", (req, res) => {
             res.redirect("/inventory")
         }
     })
-    console.log("New Item Created")
 })
 
 // update

@@ -8,4 +8,4 @@ const catchAsyncErrors = fn => (
     }
 );
 
-exports.catchAsync = catchAsyncErrors;
+exports.catchAsync = catchAsyncErrors

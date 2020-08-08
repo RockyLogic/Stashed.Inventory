@@ -27,7 +27,8 @@ passport.use(new DiscordStrategy({
                 const newUser = await User.create({
                     name: profile.username + "#" + profile.discriminator,
                     discordID: profile.id,
-                    discordImage: "https://cdn.discordapp.com/avatars/" + profile.id + "/" + profile.avatar
+                    discordImage: "https://cdn.discordapp.com/avatars/" + profile.id + "/" + profile.avatar,
+                    items: []
                 })
                 const savedUser = await newUser.save()
                 done(null, savedUser)

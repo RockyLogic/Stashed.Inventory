@@ -5,15 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google Fonts - Roboto -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap">
     <!-- Icons -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--BootStrap 4-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="../public/css/main.css">
-    <link rel="stylesheet" type="text/css" href="../public/css/inventory.css">
-    <link rel="stylesheet" href="../public/css/modal.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/inventory.css">
+    <link rel="stylesheet" type="text/css" href="/css/modal.css">
 
     <title>Stashed</title>
 </head>
@@ -21,7 +24,7 @@
 <body>
     <nav id="navbar" class="align-middle navbar navbar-dark navbar-expand-md fixed-top">
         <a id="navbar-logo" class="navbar-brand" href="#">
-            <img src="../public/images/Icon2.png" width="50" height="50" class="align-middle">
+            <img src="/images/Icon2.png" width="50" height="50" class="align-middle">
         </a>
 
         <!--Collapse Nav When Dimensions Shrink-->
@@ -48,7 +51,7 @@
     <section id="inventory">
         <div class="container-fluid d-flex justify-content-center" style="height: 100%;">
             <div class="row align-items-center justify-content-around" style="width:100%;">
-                <div id="inventory-list" class="inventory-block col-12 col-md-6 col-xl-4">
+                <div id="inventory-list" class="inventory-block col-12 col-lg-6 col-xl-4">
                     <div class="d-flex">
                         <h4>Inventory</h4>
 
@@ -66,7 +69,7 @@
 
                                         <!-- modal header -->
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">New Inventory</h5>
+                                            <h5 class="modal-title" id="modalLabel">New Inventory</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true" style="color: white;">&times;</span>
                                             </button>
@@ -83,6 +86,12 @@
                                             <div class="form-group row d-flex justify-content-between"
                                                 style="padding: 0 1rem;">
                                                 <div class="form-group">
+                                                    <label for="size-text" class="col-form-label"
+                                                        style="color: lightslategray"><strong>Size</strong></label>
+                                                    <input name="size" type="text" class="form-control" id="size-text"
+                                                        placeholder="Size">
+                                                </div>
+                                                <div class="form-group">
                                                     <label for="message-text" class="col-form-label"
                                                         style="color: lightslategray"><strong>Price</strong></label>
                                                     <input name="price" type="text" class="form-control"
@@ -92,7 +101,7 @@
                                                     <label for="date-text" class="col-form-label"
                                                         style="color: lightslategray"><strong>Date</strong></label>
                                                     <input name="date" type="text" class="form-control" id="date-text"
-                                                        placeholder="DD/MM/YYYY">
+                                                        value="<%= date%>">
                                                 </div>
                                             </div>
                                         </div>
@@ -118,39 +127,46 @@
 
                     <div class="inventory-scroll-list">
                         <!-- Each Item -->
+                        <% itemList.forEach((item) => { %>
                         <div class="inventory-item">
+
                             <div class="d-flex">
-                                <div class="item-title"><Strong>Title of Shoe</Strong></div>
-                                <div class="ml-auto item-price"><strong>$339</strong></div>
+                                <div class="item-title"><Strong><%=item.name%></Strong></div>
+                                <div class="ml-auto item-price"><strong>$<%=item.purchasedPrice%></strong></div>
                             </div>
 
                             <div class="d-flex">
                                 <div>
-                                    <div class="item-info"><strong>Size: 6.5</strong></div>
-                                    <div class="item-info"><strong>Date: 07/22/2020</strong></div>
+                                    <div class="item-info"><strong>Size: <%=item.size%></strong></div>
+                                    <div class="item-info"><strong>Date: <%=item.purchasedDate%></strong></div>
                                 </div>
 
-                                <div class="ml-auto align-self-end align-items-center">
-                                    <i class="fa fa-pencil-square-o ml-3" aria-hidden="true" style="color: gray"></i>
-                                    <i class="fa fa-clone ml-3" aria-hidden="true" style="color: gray"></i>
-                                    <i class="fa fa-usd ml-3" aria-hidden="true" style="color: rgb(71, 187, 115)"></i>
-                                    <i class="fa fa-trash ml-3" aria-hidden="true" style="color: red"></i>
+                                <div id="edit-links" class=" ml-auto align-self-end
+                                    align-items-center d-flex">
+                                    <button class="btn"><i class=" fa fa-pencil-square-o ml-3" aria-hidden="true"
+                                            style="color: gray"></i></button>
+                                    <button class="btn"><i class="fa fa-clone ml-3" aria-hidden="true"
+                                            style="color: gray"></i></button>
+                                    <button class="btn"><i class="fa fa-usd ml-3" aria-hidden="true"
+                                            style="color: rgb(71, 187, 115)"></i></button>
+                                    <button class="btn"><i class="fa fa-trash ml-3" aria-hidden="true"
+                                            style="color: red"></i></button>
                                 </div>
                             </div>
 
                         </div>
+                        <% }) %>
                         <!-- Each Item -->
-
                     </div>
                 </div>
-                <div id="sale-list" class="inventory-block col-12 col-md-5 col-xl-4">
+                <div id="sale-list" class="inventory-block col-12 col-lg-5 col-xl-3">
                     <h4>Sales</h4>
                     <div class="inventory-scroll-list">
 
                     </div>
                 </div>
 
-                <div id="statistic" class="inventory-block col-12 col-md-11 col-xl-3">
+                <div id="statistic" class="inventory-block col-12 col-lg-11 col-xl-4">
                     <h4>Statistics</h4>
                 </div>
             </div>
@@ -161,7 +177,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="../public/js/newInventoryModal.js"></script>
+    <script src="/js/newInventoryModal.js"></script>
 </body>
 
 </html>

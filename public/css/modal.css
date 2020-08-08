@@ -5,9 +5,15 @@
 .modal-body{
     background-color: #2D2F49;
 }
+
 .modal-header {
     background-color: #2D2F49;
     color: #7988F2;
+    border-bottom: 0 none;
+}
+
+.modal-footer {
+    border-top: 0 none;
 }
 
 input{

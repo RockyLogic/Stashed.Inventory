@@ -1,6 +1,6 @@
-var mongoose = require("mongoose")
+var mongoose = require('mongoose')
 
-var userSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -13,6 +13,12 @@ var userSchema = mongoose.Schema({
         type: String,
         required: true
     }
+})
+
+userSchema.virtual("items", {
+    ref: "Item",
+    localField: "_id",
+    foreignField: "author"
 })
 
 const User = module.exports = mongoose.model("User", userSchema)
