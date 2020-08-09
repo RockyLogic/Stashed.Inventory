@@ -1,0 +1,53 @@
+<!-- Add edit button -->
+<button type="button" class="btn ml-auto mr-1 no-outline p-0 p-md-2" data-toggle="modal" data-target="#editItem-<%=item._id%>">
+    <i class=" fa fa-pencil-square-o ml-3" aria-hidden="true" style="color: gray"></i>
+</button>
+
+<!-- Add edit modal -->
+<form action="/item/<%=item._id%>?_method=PATCH" method="POST">
+    <div class="modal fade" id="editItem-<%=item._id%>" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- modal header -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Edit Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="color: white;">&times;</span>
+                    </button>
+                </div>
+
+                <!-- modal body -->
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label" style="color: lightslategray"><strong>Name</strong></label>
+                        <input name="name" type="text" class="form-control" id="recipient-name" value="<%=item.name%>">
+                    </div>
+                    <div class="form-group row d-flex justify-content-between" style="padding: 0 1rem;">
+                        <div class="form-group">
+                            <label for="size-text" class="col-form-label" style="color: lightslategray"><strong>Size</strong></label>
+                            <input name="size" type="text" class="form-control" id="size-text" value="<%=item.size%>">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label" style="color: lightslategray"><strong>Price</strong></label>
+                            <input name="price" type="text" class="form-control" id="message-text" value="<%=item.purchasedPrice%>">
+                        </div>
+                        <div class="form-group">
+                            <label for="date-text" class="col-form-label" style="color: lightslategray"><strong>Date</strong></label>
+                            <input name="date" type="text" class="form-control" id="date-text" value="<%=item.purchasedDate%>">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- modal footer -->
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <button type="button" class="btn" style="background-color: lightslategray;" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn" style="background-color: rgb(121, 136, 242); color:white;">Submit</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>

@@ -37,7 +37,7 @@ h4{
 
 .item-title{
     color: #7988F2;
-    font-size: 16px;
+    font-size: medium;
 }
 
 .item-price{
@@ -51,10 +51,6 @@ h4{
 
 .no-outline:focus{
     outline: none;
-}
-
-#edit-links button{
-    padding: 4px;
 }
 
 .item-edit {

@@ -78,8 +78,13 @@ router.post("/:id/clone", (req, res) => {
 
 // update
 router.patch("/:id", (req, res) => {
-    Item.findByIdAndUpdate(req.params.id, req.body.item, (err, updatedItem) => {
-        res.redirect()
+    Item.findByIdAndUpdate(req.params.id, {
+        name: req.body.name,
+        size: req.body.size,
+        purchasedPrice: req.body.price,
+        purchasedDatte: req.body.date
+    }, (err, updatedItem) => {
+        res.redirect("/inventory")
     })
 })
 
