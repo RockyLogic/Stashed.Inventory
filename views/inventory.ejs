@@ -32,8 +32,8 @@
         <!--NavBar Links-->
         <div id="navLinks" class="collapse navbar-collapse">
             <!--Right Side Nav Bar-->
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+            <ul class="navbar-nav ml-auto" style="background-color: rgba(33, 34, 51, 0.7); padding: 0px 25px 0px 15px; border-radius: 25px;">
+                <li class=" nav-item">
                     <a class="nav-link" href="">
                         <img src="<%= currentUser.discordImage %>" style="border-radius: 25px" width="50" height="50">
                     </a>
@@ -48,6 +48,7 @@
     <section id="inventory">
         <div class="container-fluid d-flex justify-content-center" style="height: 100%;">
             <div class="row align-items-center justify-content-around" style="width:100%;">
+
                 <div id="inventory-list" class="inventory-block col-12 col-lg-5">
                     <div class="d-flex">
                         <h4>Inventory</h4>
@@ -110,12 +111,21 @@
 
                         </div>
                     </div>
+
                     <div id="sale-list" class="inventory-block col-12 col-lg-6">
-                        <h4>Sales</h4>
+
+                        <div class="d-flex">
+                            <h4>Sales</h4>
+                            <%- include("./newSaleModal") %>
+                        </div>
+
                         <div class="inventory-scroll-list">
 
                         </div>
                     </div>
+
+
+
 
                     <div id="statistic" class="inventory-block col-12 col-lg-11">
                         <h4>Statistics</h4>

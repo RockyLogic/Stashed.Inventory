@@ -1,37 +1,20 @@
-const path = require('path')
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
-const User = require('../models/user')
 const Item = require('../models/item')
 const getDate = require('../misc/getDate')
-
-require(`dotenv`).config();
-
-//Creates db with mongoose 
-mongoose.connect(process.env.MONGODB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-})
 
 // new item
 router.post("/", (req, res) => {
 
     let formattedDate = getDate()
-    const name = req.body.name;
-    const size = req.body.size;
-    const purchasedPrice = req.body.price;
-    const purchasedDate = req.body.date || formattedDate;
-    const author = req.user._id
-
 
     var newItem = {
-        name,
-        size,
-        purchasedPrice,
-        purchasedDate,
-        author
+        name: req.body.name,
+        size: req.body.size,
+        purchasedPrice: req.body.price,
+        purchasedDate: req.body.date || formattedDate,
+        author: req.user._id
     }
 
     Item.create(newItem, (err, createdItem) => {

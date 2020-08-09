@@ -5,6 +5,10 @@ var saleSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    size: {
+        type: String,
+        required: true
+    },
     purchasedPrice: {
         type: Number,
         required: true
@@ -13,13 +17,12 @@ var saleSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    buyer: {
+        type: String,
+    },
     soldPrice: {
         type: Number,
         required: true
-    },
-    soldDate: {
-        type: Date,
-        default: Date.now
     },
     profit: {
         type: Number,

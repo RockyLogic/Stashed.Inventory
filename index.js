@@ -47,6 +47,7 @@ app.use(passport.session())
 //Routes
 app.use('/discord', require('./routes/discord'))
 app.use('/item', require("./routes/item"))
+app.use('/sale', require('./routes/sale'))
 
 // Home page
 app.get("/", (req, res) => {
