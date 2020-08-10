@@ -59,9 +59,15 @@ app.get("/inventory", async (req, res) => {
     await req.user.populate({
         path: 'items'
     }).execPopulate()
+
+    await req.user.populate({
+        path: 'sales'
+    }).execPopulate()
+
     res.status(200).render("inventory.ejs", {
         currentUser: req.user,
         itemList: req.user.items,
+        saleList: req.user.sales,
         date: getDate()
     })
 })

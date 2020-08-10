@@ -14,11 +14,12 @@ var saleSchema = mongoose.Schema({
         required: true
     },
     purchasedDate: {
-        type: Date,
-        default: Date.now
+        type: String,
+        required: true
     },
     buyer: {
         type: String,
+        required: true
     },
     soldPrice: {
         type: Number,
@@ -26,7 +27,7 @@ var saleSchema = mongoose.Schema({
     },
     profit: {
         type: Number,
-        required: true,
+        required: true
     },
     author: {
         type: mongoose.Schema.Types.ObjectId,

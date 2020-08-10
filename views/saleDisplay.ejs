@@ -1,0 +1,39 @@
+<div class="inventory-item">
+    <div class="d-flex">
+        <div class="item-title"><Strong><%=sale.name%> <span class="buyerName d-none d-md-inline">(Sold To: <%=sale.buyer%>)</span></Strong></div>
+        <div class="ml-auto item-price"><strong>$<%=sale.purchasedPrice%><span class="d-none d-md-inline"> -> $<%=sale.soldPrice%></span><span class="profit"> ($<%=sale.profit%>)</span></strong></div>
+    </div>
+
+    <div class="d-flex" style="max-height: 80%;">
+        <div>
+
+            <div>
+                <div class="item-info" style="max-height: 50%;">
+                    <strong>Size: <%=sale.size%></strong>
+                </div>
+                <div class="item-info" style="max-height: 50%;">
+                    <strong>
+                        <spa class="d-none d-md-inline">Date:</spa> <%=sale.purchasedDate%>
+                    </strong>
+                </div>
+            </div>
+
+        </div>
+        <div id="edit-links" class=" ml-auto align-self-end align-items-center d-flex">
+
+            <%- include("./editSaleModal", {sale}); %>
+
+            <form action="/sale/<%=sale._id%>/clone" method="POST" style="margin-block-end: 0;">
+                <button class="btn p-0 p-md-2">
+                    <i class="fa fa-clone ml-3" aria-hidden="true" style="color: gray"></i>
+                </button>
+            </form>
+
+            <form action="/sale/<%=sale._id%>?_method=DELETE" method="POST" style="margin-block-end: 0;">
+                <button class="btn p-0 p-md-2">
+                    <i class="fa fa-trash ml-3" aria-hidden="true" style="color: red"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

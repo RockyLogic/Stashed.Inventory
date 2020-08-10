@@ -57,3 +57,11 @@ h4{
     text-align: center;
     right:50%;
 }
+
+.buyerName{
+    color:grey;
+}
+
+.profit{
+    color: rgb(71, 187, 115);
+}

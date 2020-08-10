@@ -30,23 +30,14 @@ router.post("/", (req, res) => {
 //clone item
 router.post("/:id/clone", (req, res) => {
 
-    var newItem = {}
-
     Item.findById(req.params.id, (err, foundItem) => {
-        let formattedDate = getDate()
-        const name = foundItem.name;
-        const size = foundItem.size;
-        const purchasedPrice = foundItem.purchasedPrice;
-        const purchasedDate = foundItem.purchasedDate || formattedDate;
-        const author = foundItem.author
-
 
         var newItem = {
-            name,
-            size,
-            purchasedPrice,
-            purchasedDate,
-            author
+            name: foundItem.name,
+            size: foundItem.size,
+            purchasedPrice: foundItem.purchasedPrice,
+            purchasedDate: foundItem.purchasedDate,
+            author: foundItem.author
         }
 
         Item.create(newItem, (err, createdItem) => {
@@ -74,8 +65,8 @@ router.patch("/:id", (req, res) => {
 router.delete("/:id", (req, res) => {
     Item.findByIdAndRemove(req.params.id, (err) => {
         if (err) {
+            console.log(`[Data Base] Failed To Delete Item: ${req.params.id}`)
             res.redirect("/inventory")
-            console.log(`[Data Base] Failed To Delete: ${req.params.id}`)
         } else {
             res.redirect("/inventory")
         }
