@@ -38,6 +38,9 @@ h4{
 .item-title{
     color: #7988F2;
     font-size: medium;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .item-price{
@@ -64,4 +67,28 @@ h4{
 
 .profit{
     color: rgb(71, 187, 115);
+}
+
+.greyButton{
+    color:grey;
+}
+
+.greyButton:hover{
+    color:white;
+}
+
+.deleteButton{
+    color:red;
+}
+
+.deleteButton:hover{
+    color:rgb(175, 0, 0);
+}
+
+.sellButton{
+    color:rgb(71, 187, 115);
+}
+
+.sellButton:hover{
+    color:rgb(0, 255, 100);
 }

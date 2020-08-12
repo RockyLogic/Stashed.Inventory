@@ -24,7 +24,7 @@
             <img src="/images/Icon2.png" width="50" height="50" class="align-middle">
         </a>
 
-        <!--Collapse Nav When Dimensions Shrink-->
+        <!-- Collapse Nav When Dimensions Shrink -->
         <button class="navbar-toggler custom-toggler" data-toggle="collapse" data-target="#navLinks">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -32,14 +32,19 @@
         <!--NavBar Links-->
         <div id="navLinks" class="collapse navbar-collapse">
             <!--Right Side Nav Bar-->
-            <ul class="navbar-nav ml-auto" style="background-color: rgba(33, 34, 51, 0.7); padding: 0px 25px 0px 15px; border-radius: 25px;">
+            <ul class="navbar-nav ml-auto" style="background-color: rgba(33, 34, 51, 0.7); padding: 10px 15px; border-radius: 25px; margin-right: 20px;">
+                <li class="nav-item d-flex">
+                    <a class="nav-link align-self-center" href="#statistic"><strong>Statistics</strong></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav d-none d-sm-flex" style="background-color: rgba(33, 34, 51, 0.7); padding: 0px 25px 0px 15px; border-radius: 25px;">
                 <li class=" nav-item">
                     <a class="nav-link" href="">
                         <img src="<%= currentUser.discordImage %>" style="border-radius: 25px" width="50" height="50">
                     </a>
                 </li>
                 <li class="nav-item d-flex">
-                    <h5 class="align-self-center"><%= currentUser.name %></h5>
+                    <h5 class="align-self-center" style="margin: 0;"><%= currentUser.name %></h5>
                 </li>
             </ul>
         </div>

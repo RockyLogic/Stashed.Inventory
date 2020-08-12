@@ -1,6 +1,6 @@
 <!-- Add edit button -->
-<button type="button" class="btn ml-auto mr-1 no-outline p-0 p-md-2" data-toggle="modal" data-target="#editItem-<%=item._id%>">
-    <i class=" fa fa-pencil-square-o ml-3" aria-hidden="true" style="color: gray"></i>
+<button type="button" class="greyButton btn ml-auto mr-1 no-outline p-0 p-md-2" data-toggle="modal" data-target="#editItem-<%=item._id%>">
+    <i class=" fa fa-pencil-square-o ml-3" aria-hidden="true"></i>
 </button>
 
 <!-- Add edit modal -->
@@ -10,7 +10,7 @@
             <div class="modal-content">
 
                 <!-- modal header -->
-                <div class="modal-header">
+                <div class="modal-header" style="padding-bottom: 0;">
                     <h5 class="modal-title" id="modalLabel">Edit Item</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" style="color: white;">&times;</span>
@@ -21,20 +21,20 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label" style="color: lightslategray"><strong>Name</strong></label>
-                        <input name="name" type="text" class="form-control" id="recipient-name" value="<%=item.name%>">
+                        <input name="name" type="text" class="form-control" id="recipient-name" value="<%=item.name%>" required>
                     </div>
                     <div class="form-group row d-flex justify-content-between" style="padding: 0 1rem;">
                         <div class="form-group">
                             <label for="size-text" class="col-form-label" style="color: lightslategray"><strong>Size</strong></label>
-                            <input name="size" type="text" class="form-control" id="size-text" value="<%=item.size%>">
+                            <input name="size" type="text" class="form-control" id="size-text" value="<%=item.size%>" required>
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label" style="color: lightslategray"><strong>Price</strong></label>
-                            <input name="price" type="text" class="form-control" id="message-text" value="<%=item.purchasedPrice%>">
+                            <input name="price" type="text" class="form-control" id="message-text" value="<%=item.purchasedPrice%>" required>
                         </div>
                         <div class="form-group">
                             <label for="date-text" class="col-form-label" style="color: lightslategray"><strong>Date</strong></label>
-                            <input name="date" type="text" class="form-control" id="date-text" value="<%=item.purchasedDate%>">
+                            <input name="date" type="text" class="form-control" id="date-text" value="<%=item.purchasedDate%>" required>
                         </div>
                     </div>
                 </div>

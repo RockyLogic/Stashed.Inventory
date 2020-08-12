@@ -8,20 +8,31 @@ const Sale = require('../models/sale')
 //new sale
 router.post("/", (req, res) => {
 
+    let formattedPurchasePrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.price)
+    let formattedSoldPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.soldPrice)
+    //removes the currency sign
+    formattedPurchasePrice = formattedPurchasePrice.substring(1, formattedPurchasePrice.length)
+    formattedSoldPrice = formattedSoldPrice.substring(1, formattedSoldPrice.length)
+
+    //calc profit
+    let formattedProfit = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(formattedSoldPrice - formattedPurchasePrice)
+    formattedProfit = formattedProfit.substring(1, formattedProfit.length)
+
     var newSale = {
         name: req.body.name,
         size: req.body.size,
-        purchasedPrice: req.body.price,
+        purchasedPrice: formattedPurchasePrice,
         purchasedDate: req.body.date,
         buyer: req.body.buyer,
-        soldPrice: req.body.soldPrice,
-        profit: req.body.soldPrice - req.body.price,
+        soldPrice: formattedSoldPrice,
+        profit: formattedProfit,
         author: req.user._id
     }
 
     Sale.create(newSale, (err, createdSale) => {
         if (err) {
             console.log(err);
+            res.redirect("/inventory")
         } else {
             res.redirect("/inventory")
         }
@@ -32,6 +43,7 @@ router.post("/", (req, res) => {
 router.post("/:id/clone", (req, res) => {
 
     Sale.findById(req.params.id, (err, foundSale) => {
+
         const newSale = {
             name: foundSale.name,
             size: foundSale.size,
@@ -46,6 +58,7 @@ router.post("/:id/clone", (req, res) => {
         Sale.create(newSale, (err, createdSale) => {
             if (err) {
                 console.log(err);
+                res.redirect("/inventory")
             } else {
                 res.redirect("/inventory")
             }
@@ -55,17 +68,27 @@ router.post("/:id/clone", (req, res) => {
 
 //patch sale
 router.patch("/:id", (req, res) => {
+
+    let formattedPurchasePrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.price)
+    let formattedSoldPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.soldPrice)
+    //removes the currency sign
+    formattedPurchasePrice = formattedPurchasePrice.substring(1, formattedPurchasePrice.length)
+    formattedSoldPrice = formattedSoldPrice.substring(1, formattedSoldPrice.length)
+    //calc profit
+    let formattedProfit = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(formattedSoldPrice - formattedPurchasePrice)
+    formattedProfit = formattedProfit.substring(1, formattedProfit.length)
+
     Sale.findByIdAndUpdate(req.params.id, {
         name: req.body.name,
         size: req.body.size,
-        purchasedPrice: req.body.price,
+        purchasedPrice: formattedPurchasePrice,
         purchasedDatte: req.body.date,
         buyer: req.body.buyer,
-        soldPrice: req.body.soldPrice,
-        profit: req.body.soldPrice - req.body.price,
+        soldPrice: formattedSoldPrice,
+        profit: formattedProfit,
     }, (err, updatedSale) => {
         if (err) {
-            console.log(err)
+            console.log(err);
         }
         res.redirect("/inventory")
     })
@@ -83,5 +106,42 @@ router.delete("/:id", (req, res) => {
     })
 })
 
+// Sell Item
+router.post("/:id/sell", (req, res) => {
+    const itemId = req.params.id
+    Item.findById(itemId, (err, foundItem) => {
+
+        let formattedSoldPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.soldPrice)
+        //removes the currency sign
+        formattedSoldPrice = formattedSoldPrice.substring(1, formattedSoldPrice.length)
+        //calc profit
+        let formattedProfit = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(formattedSoldPrice - foundItem.purchasedPrice)
+        formattedProfit = formattedProfit.substring(1, formattedProfit.length)
+
+        var newSale = {
+            name: foundItem.name,
+            size: foundItem.size,
+            purchasedPrice: foundItem.purchasedPrice,
+            purchasedDate: foundItem.purchasedDate,
+            buyer: req.body.buyer,
+            soldPrice: formattedSoldPrice,
+            profit: formattedProfit,
+            author: foundItem.author
+        }
+        Sale.create(newSale, (err, createdSale) => {
+            if (err) {
+                console.log(err);
+                res.redirect("/inventory")
+            } else {
+                Item.findByIdAndDelete(itemId, (err) => {
+                    if (err) {
+                        console.log(err)
+                    }
+                    res.redirect("/inventory")
+                })
+            }
+        })
+    })
+})
 
 module.exports = router;

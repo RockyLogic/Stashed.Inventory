@@ -1,6 +1,6 @@
 <!-- Add edit button -->
-<button type="button" class="btn ml-auto mr-1 no-outline p-0 p-md-2" data-toggle="modal" data-target="#editSale-<%=sale._id%>">
-    <i class=" fa fa-pencil-square-o ml-3" aria-hidden="true" style="color: gray"></i>
+<button type="button" class="greyButton btn ml-auto mr-1 no-outline p-0 p-md-2" data-toggle="modal" data-target="#editSale-<%=sale._id%>">
+    <i class=" fa fa-pencil-square-o ml-3" aria-hidden="true"></i>
 </button>
 
 <!-- Add edit modal -->
@@ -10,7 +10,7 @@
             <div class="modal-content">
 
                 <!-- modal header -->
-                <div class="modal-header">
+                <div class="modal-header" style="padding-bottom: 0;">
                     <h5 class="modal-title" id="modalLabel">Edit Sale</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" style="color: white;">&times;</span>
@@ -21,31 +21,31 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label" style="color: lightslategray"><strong>Name</strong></label>
-                        <input name="name" type="text" class="form-control" id="recipient-name" value="<%=sale.name%>">
+                        <input name="name" type="text" class="form-control" id="recipient-name" value="<%=sale.name%>" required>
                     </div>
                     <div class="form-group row d-flex justify-content-between" style="padding: 0 1rem;">
                         <div class="form-group">
                             <label for="size-text" class="col-form-label" style="color: lightslategray"><strong>Size</strong></label>
-                            <input name="size" type="text" class="form-control" id="size-text" value="<%=sale.size%>">
+                            <input name="size" type="text" class="form-control" id="size-text" value="<%=sale.size%>" required>
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label" style="color: lightslategray"><strong>Price</strong></label>
-                            <input name="price" type="text" class="form-control" id="message-text" value="<%=sale.purchasedPrice%>">
+                            <label for="price-text" class="col-form-label" style="color: lightslategray"><strong>Price</strong></label>
+                            <input name="price" type="text" class="form-control" id="price-text" value="<%=sale.purchasedPrice%>" required>
                         </div>
                         <div class="form-group">
                             <label for="date-text" class="col-form-label" style="color: lightslategray"><strong>Date</strong></label>
-                            <input name="date" type="text" class="form-control" id="date-text" value="<%=sale.purchasedDate%>">
+                            <input name="date" type="text" class="form-control" id="date-text" value="<%=sale.purchasedDate%>" required>
                         </div>
                     </div>
 
                     <div class="form-group row d-flex justify-content-between" style="padding: 0 1rem;">
                         <div class="form-group">
                             <label for="buyer-text" class="col-form-label" style="color: lightslategray"><strong>Buyer</strong></label>
-                            <input name="buyer" type="text" class="form-control" id="buyer-text" value="<%=sale.buyer%>">
+                            <input name="buyer" type="text" class="form-control" id="buyer-text" value="<%=sale.buyer%>" required>
                         </div>
                         <div class="form-group">
                             <label for="soldPrice-text" class="col-form-label" style="color: lightslategray"><strong>Price Sold</strong></label>
-                            <input name="soldPrice" type="text" class="form-control" id="soldPrice-text" value="<%=sale.soldPrice%>">
+                            <input name="soldPrice" type="text" class="form-control" id="soldPrice-text" value="<%=sale.soldPrice%>" required>
                         </div>
                     </div>
 

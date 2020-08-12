@@ -1,7 +1,6 @@
 <!-- Add new inventory button -->
-<button type="button" class="btn ml-auto mr-1 no-outline" data-toggle="modal" data-target="#createNewItem"
-    style="height: 20px; width: 20px;">
-    <i class="fa fa-plus fa-lg" aria-hidden="true" style="color:white;"></i>
+<button type="button" class="greyButton btn ml-auto mr-1 d-flex align-items-center justify-content-center" data-toggle="modal" data-target="#createNewItem" style="height: 20px; width: 20px;">
+    <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
 </button>
 
 <!-- Add new inventory modal -->
@@ -11,7 +10,7 @@
             <div class="modal-content">
 
                 <!-- modal header -->
-                <div class="modal-header">
+                <div class="modal-header" style="padding-bottom: 0;">
                     <h5 class="modal-title" id="modalLabel">New Inventory</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" style="color: white;">&times;</span>
@@ -21,25 +20,21 @@
                 <!-- modal body -->
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label"
-                            style="color: lightslategray"><strong>Name</strong></label>
-                        <input name="name" type="text" class="form-control" id="recipient-name" placeholder="Name">
+                        <label for="recipient-name" class="col-form-label" style="color: lightslategray"><strong>Name</strong></label>
+                        <input name="name" type="text" class="form-control" id="recipient-name" placeholder="Name" required>
                     </div>
                     <div class="form-group row d-flex justify-content-between" style="padding: 0 1rem;">
                         <div class="form-group">
-                            <label for="size-text" class="col-form-label"
-                                style="color: lightslategray"><strong>Size</strong></label>
-                            <input name="size" type="text" class="form-control" id="size-text" placeholder="Size">
+                            <label for="size-text" class="col-form-label" style="color: lightslategray"><strong>Size</strong></label>
+                            <input name="size" type="text" class="form-control" id="size-text" placeholder="Size" required>
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label"
-                                style="color: lightslategray"><strong>Price</strong></label>
-                            <input name="price" type="text" class="form-control" id="message-text" placeholder="Price">
+                            <label for="message-text" class="col-form-label" style="color: lightslategray"><strong>Price</strong></label>
+                            <input name="price" type="text" class="form-control" id="message-text" placeholder="Price" required>
                         </div>
                         <div class="form-group">
-                            <label for="date-text" class="col-form-label"
-                                style="color: lightslategray"><strong>Date</strong></label>
-                            <input name="date" type="text" class="form-control" id="date-text" value="<%= date%>">
+                            <label for="date-text" class="col-form-label" style="color: lightslategray"><strong>Date</strong></label>
+                            <input name="date" type="text" class="form-control" id="date-text" value="<%= date%>" required>
                         </div>
                     </div>
                 </div>
@@ -47,8 +42,7 @@
                 <!-- modal footer -->
                 <div class="modal-footer">
                     <div class="form-group">
-                        <button type="button" class="btn" style="background-color: lightslategray;"
-                            data-dismiss="modal">Close</button>
+                        <button type="button" class="btn" style="background-color: lightslategray;" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn" style="background-color: rgb(121, 136, 242); color:white;">Add
                             To
                             Inventory</button>

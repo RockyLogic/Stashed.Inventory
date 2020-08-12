@@ -1,0 +1,46 @@
+<!-- Add new inventory button -->
+<button type="button" class="sellButton btn ml-auto mr-1 no-outline p-0 p-md-2" data-toggle="modal" data-target="#sellItem-<%=item._id%>">
+    <i class="fa fa-usd ml-3" aria-hidden="true"></i>
+</button>
+
+<!-- Add new inventory modal -->
+<form action="sale/<%=item._id%>/sell" method="POST">
+    <div class="modal fade" id="sellItem-<%=item._id%>" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- modal header -->
+                <div class="modal-header" style="padding-bottom: 0;">
+                    <h5 class="modal-title" id="modalLabel">Sell Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="color: white;">&times;</span>
+                    </button>
+                </div>
+
+                <!-- modal body -->
+                <div class="modal-body">
+                    <div class="form-group row d-flex justify-content-between" style="padding: 0 1rem;">
+                        <div class="form-group">
+                            <label for="buyer-text" class="col-form-label" style="color: lightslategray"><strong>Buyer</strong></label>
+                            <input name="buyer" type="text" class="form-control" id="buyer-text" placeholder="Buyer" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="soldPrice-text" class="col-form-label" style="color: lightslategray"><strong>Price Sold</strong></label>
+                            <input name="soldPrice" type="text" class="form-control" id="soldPrice-text" placeholder="Price Sold" required>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- modal footer -->
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <button type="button" class="btn" style="background-color: lightslategray;" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn" style="background-color: rgb(121, 136, 242); color:white;">Sell</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>

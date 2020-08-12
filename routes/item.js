@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const mongoose = require('mongoose')
 const Item = require('../models/item')
 const getDate = require('../misc/getDate')
 
@@ -8,11 +7,15 @@ const getDate = require('../misc/getDate')
 router.post("/", (req, res) => {
 
     let formattedDate = getDate()
+    let formattedPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.price)
+
+    //removes the currency sign
+    formattedPrice = formattedPrice.substring(1, formattedPrice.length)
 
     var newItem = {
         name: req.body.name,
         size: req.body.size,
-        purchasedPrice: req.body.price,
+        purchasedPrice: formattedPrice,
         purchasedDate: req.body.date || formattedDate,
         author: req.user._id
     }
@@ -20,6 +23,7 @@ router.post("/", (req, res) => {
     Item.create(newItem, (err, createdItem) => {
         if (err) {
             console.log(err);
+            res.redirect("/inventory")
         } else {
             res.redirect("/inventory")
         }
@@ -43,6 +47,7 @@ router.post("/:id/clone", (req, res) => {
         Item.create(newItem, (err, createdItem) => {
             if (err) {
                 console.log(err);
+                res.redirect("/inventory")
             } else {
                 res.redirect("/inventory")
             }
@@ -58,6 +63,10 @@ router.patch("/:id", (req, res) => {
         purchasedPrice: req.body.price,
         purchasedDatte: req.body.date
     }, (err, updatedItem) => {
+        if (err) {
+            console.log(err);
+            res.redirect("/inventory")
+        }
         res.redirect("/inventory")
     })
 })

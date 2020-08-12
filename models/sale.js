@@ -10,7 +10,7 @@ var saleSchema = mongoose.Schema({
         required: true
     },
     purchasedPrice: {
-        type: Number,
+        type: String,
         required: true
     },
     purchasedDate: {
@@ -22,11 +22,11 @@ var saleSchema = mongoose.Schema({
         required: true
     },
     soldPrice: {
-        type: Number,
+        type: String,
         required: true
     },
     profit: {
-        type: Number,
+        type: String,
         required: true
     },
     author: {
