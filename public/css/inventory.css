@@ -77,11 +77,19 @@ h4{
     color:white;
 }
 
-.deleteButton{
+.deleteSaleButton{
     color:red;
 }
 
-.deleteButton:hover{
+.deleteSaleButton:hover{
+    color:rgb(175, 0, 0);
+}
+
+.deleteItemButton{
+    color:red;
+}
+
+.deleteItemButton:hover{
     color:rgb(175, 0, 0);
 }
 

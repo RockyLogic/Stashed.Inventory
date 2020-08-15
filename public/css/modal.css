@@ -1,13 +1,14 @@
 .modal-content{
-    background-color: #2D2F49;
+    background-color: rgb(29, 29, 46);
+    /* background-color: #2D2F49; */
 }
 
 .modal-body{
-    background-color: #2D2F49;
+    background-color: rgb(29, 29, 46);
 }
 
 .modal-header {
-    background-color: #2D2F49;
+    background-color: rgb(29, 29, 46);
     color: #7988F2;
     border-bottom: 0 none;
 }

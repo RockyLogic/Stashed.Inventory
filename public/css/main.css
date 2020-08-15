@@ -9,17 +9,35 @@ body{
     height: 100%;
 }
 
-a:focus,
+/* a:focus,
 button:focus,
 input:focus,
 :focus {
   outline: none;
-}
+} */
 
 .btn:focus,.btn:active {
     outline: none !important;
     box-shadow: none;
 }
+
+.form-control, .form-control:active, .form-control:focus{
+    color:black;
+    background-color: whitesmoke;
+    border-style: none;
+    outline: none !important;
+    box-shadow: none;
+}
+
+input, input:active, input:focus{
+    color:rgb(27, 27, 38);
+    outline: none !important;
+    box-shadow: none;
+}
+input::placeholder{
+    color: black;
+}
+
 
 ::-webkit-scrollbar {
     width: 10px;
