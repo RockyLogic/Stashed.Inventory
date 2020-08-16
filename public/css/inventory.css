@@ -77,6 +77,13 @@ h4{
     color:white;
 }
 
+.cloneItemButton{
+    color:grey;
+}
+.cloneItemButton:hover{
+    color:white;
+}
+
 .deleteSaleButton{
     color:red;
 }
