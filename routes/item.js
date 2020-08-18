@@ -60,7 +60,7 @@ router.patch("/:id", (req, res) => {
     Item.findByIdAndUpdate(req.params.id, {
         name: req.body.name,
         size: req.body.size,
-        purchasedPrice: req.body.price,
+        purchasedPrice: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.price),
         purchasedDatte: req.body.date
     }, (err, updatedItem) => {
         if (err) {

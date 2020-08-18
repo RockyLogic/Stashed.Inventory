@@ -1,8 +1,11 @@
 #inventory {
-    height: 100vh;
+    height: 95vh;
     padding-top: 10vh;
 }
 
+#statistic{
+    height: 95vh;
+}
 .inventory-block{
     height: 95%;
     padding: 30px;
@@ -106,4 +109,29 @@ h4{
 
 .sellButton:hover{
     color:rgb(0, 255, 100);
+}
+
+.statistics-sections{
+    
+    border-radius: 30px;
+    margin-bottom: 30px;
+}
+
+.statistics-text{
+    font-size: 1.25rem;
+    text-align: center;
+    color: grey;
+}
+
+.statistics-text-block{
+    background-color: rgb(45, 47, 73);
+    border-radius: 30px;
+    padding:10px;
+    margin-bottom: 20px;
+}
+
+.statistics-text-highlighted{
+    font-size: 3rem;
+    text-align: center;
+    color: #7988F2;
 }

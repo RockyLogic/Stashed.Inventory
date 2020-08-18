@@ -31,7 +31,7 @@ $('.deleteSaleButton').click(function () {
     })
 })
 
-// // cloning item with ajax (need to display new item)
+// cloning item with ajax (need to display new item)
 // $('.cloneItemButton').click(function () {
 //     const itemId = $(this).attr('id')
 //     $.ajax({
@@ -39,19 +39,9 @@ $('.deleteSaleButton').click(function () {
 //         url: '/item/' + itemId + "/clone",
 //         success: function (resp) {
 //             console.log('Item Cloned: ' + resp._id)
-//             const item = resp
 
-//             let str = "<%= include('/itemsDisplay', {item: resp}); %>",
-//                 fn = ejs.compile(str, { client: true });
-
-//             fn(data, null, function (path, d) { // include callback
-//                 console.log(path);
-//                 console.log(d);
-//                 // d -> {person: 'John'}
-//                 // Put your code here
-//                 // Return the contents of file as a string
-//             }); // returns rendered string
-//             $('.inventory-scroll-list').append(fn)
+//             var html = ejs.render(`<%- include("/itemDisplay",  { item: ${JSON.stringify(resp)} }); %>`)
+//             $('.inventory-scroll-list').append(html)
 //         },
 //     })
 // })

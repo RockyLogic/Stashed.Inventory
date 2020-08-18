@@ -56,6 +56,9 @@ app.get("/", (req, res) => {
 
 // Inventory
 app.get("/inventory", async (req, res) => {
+    if (!req.user) {
+        res.redirect("/")
+    }
     await req.user.populate({
         path: 'items'
     }).execPopulate()

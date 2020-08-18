@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html> -->
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -34,7 +34,7 @@
             <!--Right Side Nav Bar-->
             <ul class="navbar-nav ml-auto" style="background-color: rgba(33, 34, 51, 0.7); padding: 10px 15px; border-radius: 25px; margin-right: 20px;">
                 <li class="nav-item d-flex">
-                    <a class="nav-link align-self-center" href="#statistic"><strong>Statistics</strong></a>
+                    <a class="nav-link align-self-center" href="#statistics"><strong>Statistics</strong></a>
                 </li>
             </ul>
             <ul class="navbar-nav d-none d-sm-flex" style="background-color: rgba(33, 34, 51, 0.7); padding: 0px 25px 0px 15px; border-radius: 25px;">
@@ -85,15 +85,75 @@
                         </div>
                     </div>
 
-
-
-
-                    <div id="statistic" class="inventory-block col-12 col-lg-11">
+                    <div class=" inventory-block col-12 col-lg-11" style="height: auto;">
                         <h4>Statistics</h4>
+                        <div class="row d-flex justify-content-center justify-content-lg-around" style="width: 100%; height: 90%; margin: 0;">
+                            <div class="col-12 col-lg-4 statistics-sections d-flex align-content-center flex-column">
+                                <div class="statistics-text-block">
+                                    <div class="statistics-text">
+                                        Number of items in inventory
+                                    </div>
+                                    <div class="statistics-text-highlighted">
+                                        <%=itemList.length%>
+                                    </div>
+                                </div>
+                                <div class="statistics-text-block">
+                                    <div class="statistics-text">
+                                        Value of Inventory
+                                    </div>
+                                    <div class="statistics-text-highlighted">
+                                        <% let inventoryTotal = 0; %>
+                                        <% itemList.forEach((item) => { %>
+                                        <% inventoryTotal += parseFloat(item.purchasedPrice) %>
+                                        <% }) %>
+                                        <%= new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(inventoryTotal) %>
+                                    </div>
+                                </div>
+                                <div class="statistics-text-block">
+                                    <div class="statistics-text">
+                                        Number of Sales
+                                    </div>
+                                    <div class="statistics-text-highlighted">
+                                        <%=saleList.length%>
+                                    </div>
+                                </div>
+                                <div class="statistics-text-block">
+                                    <div class="statistics-text">
+                                        Net Sales
+                                    </div>
+                                    <div class="statistics-text-highlighted">
+                                        <% let saleTotal = 0; %>
+                                        <% saleList.forEach((sale) => { %>
+                                        <% saleTotal += parseFloat(sale.soldPrice) %>
+                                        <% }) %>
+                                        <%= new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(saleTotal) %>
+                                    </div>
+                                </div>
+                                <div id="statistics" class="statistics-text-block">
+                                    <div class="statistics-text">
+                                        Profit
+                                    </div>
+                                    <div class="statistics-text-highlighted" style="color:rgb(0, 255, 100)">
+                                        <% let profitTotal = 0; %>
+                                        <% saleList.forEach((sale) => { %>
+                                        <% profitTotal += parseFloat(sale.profit) %>
+                                        <% }) %>
+                                        <%= new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(profitTotal) %>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- graph -->
+                            <div class="col-12 col-lg-7 statistics-sections" style="padding: 30px; background-color: rgb(45, 47, 73);">Graph here
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
     </section>
+
 
     <!-- Scripts -->
     <!-- <script src="/js/ejs.js"></script> -->
