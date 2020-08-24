@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Item = require('../models/item')
 const getDate = require('../misc/getDate')
+const { create } = require('../models/item')
 
 // new item
 router.post("/", (req, res) => {
@@ -49,7 +50,9 @@ router.post("/:id/clone", (req, res) => {
                 console.log(err);
                 res.redirect("/inventory")
             } else {
-                res.redirect("/inventory")
+                // res.redirect("/inventory")
+                // return createdItem
+                res.send(createdItem)
             }
         })
     })

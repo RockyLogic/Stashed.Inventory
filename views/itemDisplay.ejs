@@ -23,16 +23,16 @@
 
             <%- include("./editItemModal", {item}); %>
 
-            <form action="/item/<%=item._id%>/clone" method="POST" style="margin-block-end: 0;">
-                <button id="<%=item.id%>" class="cloneItemButton btn p-0 p-md-2">
-                    <i class="fa fa-clone ml-3" aria-hidden="true"></i>
-                </button>
-            </form>
+            <!-- <form action="/item/<%=item._id%>/clone" method="POST" style="margin-block-end: 0;"> -->
+            <button id="<%=item.id%>-clone" class="cloneItemButton btn p-0 p-md-2">
+                <i class="fa fa-clone ml-3" aria-hidden="true"></i>
+            </button>
+            <!-- </form> -->
 
             <%- include("./ItemToSaleModal", {item}); %>
 
             <!-- <form style="margin-block-end: 0;"> -->
-            <button id="<%=item.id%>" class="deleteItemButton btn p-0 p-md-2">
+            <button id="<%=item.id%>-delete" class="deleteItemButton btn p-0 p-md-2">
                 <i class="fa fa-trash ml-3" aria-hidden="true"></i>
             </button>
             <!-- </form> -->

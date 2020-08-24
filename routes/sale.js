@@ -82,7 +82,7 @@ router.patch("/:id", (req, res) => {
         name: req.body.name,
         size: req.body.size,
         purchasedPrice: formattedPurchasePrice,
-        purchasedDatte: req.body.date,
+        purchasedDate: req.body.date,
         buyer: req.body.buyer,
         soldPrice: formattedSoldPrice,
         profit: formattedProfit,
