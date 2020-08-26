@@ -146,9 +146,8 @@
                                 </div>
                             </div>
 
-
                             <!-- graph -->
-                            <div class="col-12 col-lg-7 statistics-sections" style="padding: 30px; background-color: rgb(45, 47, 73);">
+                            <div class="col-12 col-lg-7 statistics-sections d-flex align-items-center" style="padding: 30px; background-color: rgb(45, 47, 73);">
                                 <canvas id="myChart" width="100%" height="100%"></canvas>
                             </div>
                         </div>
@@ -167,53 +166,62 @@
 
     <script type="text/javascript">
         const ctx = document.getElementById('myChart');
-        var sales = ['<%- JSON.stringify(saleList) %>']
-        console.log(sales)
-        // const saleProfits = []
-        // // saleList.forEach(sale => {
-        // //     if (saleProfits.length === 0) {
-        // //         saleProfit.push(sale.profit)
-        // //     } else {
-        // //         saleProfit.push(saleProfit[-1] + sale.profit)
-        // //     }
-        // // });
-        // // console.log(saleProfit)
-        // const myChart = new Chart(ctx, {
-        //     type: 'line',
-        //     data: {
-        //         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        //         datasets: [{
-        //             label: 'Sales Chart',
-        //             data: [12, 19, 3, 5, 2, 3],
-        //             backgroundColor: [
-        //                 'rgba(255, 99, 132, 0.2)',
-        //                 'rgba(54, 162, 235, 0.2)',
-        //                 'rgba(255, 206, 86, 0.2)',
-        //                 'rgba(75, 192, 192, 0.2)',
-        //                 'rgba(153, 102, 255, 0.2)',
-        //                 'rgba(255, 159, 64, 0.2)'
-        //             ],
-        //             borderColor: [
-        //                 'rgba(255, 99, 132, 1)',
-        //                 'rgba(54, 162, 235, 1)',
-        //                 'rgba(255, 206, 86, 1)',
-        //                 'rgba(75, 192, 192, 1)',
-        //                 'rgba(153, 102, 255, 1)',
-        //                 'rgba(255, 159, 64, 1)'
-        //             ],
-        //             borderWidth: 5
-        //         }]
-        //     },
-        //     options: {
-        //         scales: {
-        //             yAxes: [{
-        //                 ticks: {
-        //                     beginAtZero: true
-        //                 }
-        //             }]
-        //         }
-        //     }
-        // });
+        let sales = JSON.parse('<%- JSON.stringify(saleList) %>')
+
+        let numOfSales = new Array()
+        let cumulativeProfit = new Array()
+
+        for (x = 0; x < sales.length; x++) {
+            numOfSales.push(x);
+            if (x === 0) {
+                cumulativeProfit.push(parseFloat(sales[x].profit))
+            } else {
+                cumulativeProfit.push(parseFloat(cumulativeProfit[x - 1]) + parseFloat(sales[x].profit.replace(/,/g, "")))
+            }
+        }
+        console.log(cumulativeProfit);
+
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: numOfSales,
+                datasets: [{
+                    label: 'Total Profit',
+                    data: cumulativeProfit,
+                    backgroundColor: 'rgba(71, 187, 115, .2)',
+                    borderColor: 'rgba(71, 187, 115, 1)',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+
+                responsive: true,
+                maintainAspectRatio: false,
+
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            callback: function (value, index, values) {
+                                return '$' + value;
+                            }
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            callback: function (value, index, values) {
+                                return 1 + value;
+                            }
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Sales'
+                        }
+                    }]
+                },
+            }
+        });
     </script>
 </body>
 

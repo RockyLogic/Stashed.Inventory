@@ -8,14 +8,14 @@ const Sale = require('../models/sale')
 //new sale
 router.post("/", (req, res) => {
 
-    let formattedPurchasePrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.price)
-    let formattedSoldPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.soldPrice)
+    let formattedPurchasePrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.price.replace(/,/g, ""))
+    let formattedSoldPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.soldPrice.replace(/,/g, ""))
     //removes the currency sign
     formattedPurchasePrice = formattedPurchasePrice.substring(1, formattedPurchasePrice.length)
     formattedSoldPrice = formattedSoldPrice.substring(1, formattedSoldPrice.length)
 
     //calc profit
-    let formattedProfit = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(formattedSoldPrice - formattedPurchasePrice)
+    let formattedProfit = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(parseFloat(formattedSoldPrice.replace(/,/g, "")) - parseFloat(formattedPurchasePrice.replace(/,/g, "")))
     formattedProfit = formattedProfit.substring(1, formattedProfit.length)
 
     var newSale = {
@@ -69,13 +69,15 @@ router.post("/:id/clone", (req, res) => {
 //patch sale
 router.patch("/:id", (req, res) => {
 
-    let formattedPurchasePrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.price)
-    let formattedSoldPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.soldPrice)
+    let formattedPurchasePrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.price.replace(/,/g, ""))
+    let formattedSoldPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.soldPrice.replace(/,/g, ""))
+
     //removes the currency sign
     formattedPurchasePrice = formattedPurchasePrice.substring(1, formattedPurchasePrice.length)
     formattedSoldPrice = formattedSoldPrice.substring(1, formattedSoldPrice.length)
+
     //calc profit
-    let formattedProfit = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(formattedSoldPrice - formattedPurchasePrice)
+    let formattedProfit = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(parseFloat(formattedSoldPrice.replace(/,/g, "")) - parseFloat(formattedPurchasePrice.replace(/,/g, "")))
     formattedProfit = formattedProfit.substring(1, formattedProfit.length)
 
     Sale.findByIdAndUpdate(req.params.id, {

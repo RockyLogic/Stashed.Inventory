@@ -37,7 +37,6 @@ $('.cloneItemButton').click(async function () {
     let itemId = $(this).attr('id')
     itemId = itemId.replace('-clone', '')
     await cloneItem(itemId)
-    $(`${itemId}-clone`)
 })
 
 cloneItem = (itemId) => {
