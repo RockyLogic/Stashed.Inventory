@@ -50,8 +50,6 @@ router.post("/:id/clone", (req, res) => {
                 console.log(err);
                 res.redirect("/inventory")
             } else {
-                // res.redirect("/inventory")
-                // return createdItem
                 res.send(createdItem)
             }
         })
