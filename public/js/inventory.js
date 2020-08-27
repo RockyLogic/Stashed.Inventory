@@ -1,43 +1,4 @@
 
-// removing items with ajax
-$('.deleteItemButton').click(function () {
-    let itemId = $(this).attr('id')
-    itemId = itemId.replace('-delete', '')
-    // fades out
-    $(this).parent().parent().parent().fadeOut(200, function () {
-        //smooth transition for divs underneath
-        $(this).css({ "visibility": "hidden", display: 'block' }).slideUp(150);
-    });
-    $.ajax({
-        method: 'POST',
-        url: '/item/' + itemId + "?_method=Delete",
-    }).done(function () {
-        console.log('item deleted: ' + itemId)
-    })
-})
-
-// removing sale with ajax
-$('.deleteSaleButton').click(function () {
-    const saleId = $(this).attr('id')
-    // fades out
-    $(this).parent().parent().parent().fadeOut(200, function () {
-        //smooth transition for divs underneath
-        $(this).css({ "visibility": "hidden", display: 'block' }).slideUp(150);
-    });
-    $.ajax({
-        method: 'POST',
-        url: '/sale/' + saleId + "?_method=Delete",
-    }).done(function () {
-        console.log('item deleted: ' + saleId)
-    })
-})
-
-// cloning item with ajax(need to display new item)
-$('.cloneItemButton').click(async function () {
-    let itemId = $(this).attr('id')
-    itemId = itemId.replace('-clone', '')
-    await cloneItem(itemId)
-})
 
 cloneItem = (itemId) => {
     $.ajax({
@@ -45,15 +6,15 @@ cloneItem = (itemId) => {
         url: '/item/' + itemId + "/clone",
         success: function (resp) {
             console.log('Item Cloned: ' + resp._id)
-            template = `<div class="inventory-item">
+            template = `<div id="<%=item._id%>" class="inventory-item">
                     <div class="d-flex">
                         <div class="item-title"><Strong><%=item.name%></Strong></div>
                         <div class="ml-auto item-price"><strong>$<%=item.purchasedPrice%></strong></div>
                     </div>
-                
+
                     <div class="d-flex" style="max-height: 80%;">
                         <div>
-                
+
                             <div>
                                 <div class="item-info" style="max-height: 50%;">
                                     <strong>Size: <%=item.size%></strong>
@@ -64,21 +25,21 @@ cloneItem = (itemId) => {
                                     </strong>
                                 </div>
                             </div>
-                
+
                         </div>
                         <div id="edit-links" class=" ml-auto align-self-end d-flex align-items-center">
-                
+
                         <!-- Add edit button -->
                         <button type="button" class="greyButton btn ml-auto mr-1 no-outline p-0 p-md-2" data-toggle="modal" data-target="#editItem-<%=item._id%>">
                             <i class=" fa fa-pencil-square-o ml-3" aria-hidden="true"></i>
                         </button>
-                        
+
                         <!-- Add edit modal -->
                         <form action="/item/<%=item._id%>?_method=PATCH" method="POST">
                             <div class="modal fade" id="editItem-<%=item._id%>" tabindex="-1" role="dialog">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                        
+
                                         <!-- modal header -->
                                         <div class="modal-header" style="padding-bottom: 0;">
                                             <h5 class="modal-title" id="modalLabel">Edit Item</h5>
@@ -86,7 +47,7 @@ cloneItem = (itemId) => {
                                                 <span aria-hidden="true" style="color: white;">&times;</span>
                                             </button>
                                         </div>
-                        
+
                                         <!-- modal body -->
                                         <div class="modal-body">
                                             <div class="form-group">
@@ -108,7 +69,7 @@ cloneItem = (itemId) => {
                                                 </div>
                                             </div>
                                         </div>
-                        
+
                                         <!-- modal footer -->
                                         <div class="modal-footer">
                                             <div class="form-group">
@@ -116,18 +77,18 @@ cloneItem = (itemId) => {
                                                 <button type="submit" class="btn" style="background-color: rgb(121, 136, 242); color:white;">Submit</button>
                                             </div>
                                         </div>
-                        
+
                                     </div>
                                 </div>
                             </div>
                         </form>
-        
+
                         <!-- <form action="/item/<%=item._id%>/clone" method="POST" style="margin-block-end: 0;"> -->
-                        <button id="<%=item.id%>-clone" class="cloneItemButton btn p-0 p-md-2">
+                        <button id="<%=item._id%>-clone" class="cloneItemButton btn p-0 p-md-2">
                             <i class="fa fa-clone ml-3" aria-hidden="true"></i>
                         </button>
                         <!-- </form> -->
-            
+
                         <!-- Item to Sale button -->
                         <button type="button" class="sellButton btn ml-auto mr-1 no-outline p-0 p-md-2" data-toggle="modal" data-target="#sellItem-<%=item._id%>">
                             <i class="fa fa-usd ml-3" aria-hidden="true"></i>
@@ -174,19 +135,110 @@ cloneItem = (itemId) => {
                                 </div>
                             </div>
                         </form>
-            
+
                         <!-- <form style="margin-block-end: 0;"> -->
-                        <button id="<%=item.id%>-delete" class="deleteItemButton btn p-0 p-md-2">
+                        <button id="<%=item._id%>"-delete" class="deleteItemButton btn p-0 p-md-2">
                             <i class="fa fa-trash ml-3" aria-hidden="true"></i>
                         </button>
                         <!-- </form> -->
                     </div>
                 </div>
             </div>`
-            var html = ejs.render(template, { item: resp });
-            // var html = new EJS({ url: '../../views/itemDisplay.ejs' }).render({ item: resp })
-            // $('.inventory-scroll-list').append(html)
-            $(html).hide().appendTo('.inventory-scroll-list').fadeIn(300);
+            var html = ejs.render(template, { item: resp })
+            $(html).hide().appendTo('.inventory-scroll-list').fadeIn(300)
         },
     })
 }
+
+deleteItem = (itemId) => {
+    // fades out
+    itemDisplay = $(`#${itemId}`)
+    itemDisplay.fadeOut(200, function () {
+        //smooth transition for divs underneath
+        itemDisplay.css({ "visibility": "hidden", display: 'block' }).slideUp(150);
+    });
+    $.ajax({
+        method: 'POST',
+        url: '/item/' + itemId + "?_method=Delete",
+    }).done(function () {
+        console.log('Item Deleted: ' + itemId)
+    })
+}
+
+deleteSale = (saleId) => {
+    // fades out
+    saleDisplay = $(`#${saleId}`)
+    saleDisplay.fadeOut(200, function () {
+        //smooth transition for divs underneath
+        saleDisplay.css({ "visibility": "hidden", display: 'block' }).slideUp(150);
+    });
+    $.ajax({
+        method: 'POST',
+        url: '/sale/' + saleId + "?_method=Delete",
+    }).done(function () {
+        console.log('Sale Deleted: ' + saleId)
+    })
+}
+
+// // removing sale with ajax
+// $('.deleteSaleButton').click(function () {
+//     const saleId = $(this).attr('id')
+//     // fades out
+//     $(this).parent().parent().parent().fadeOut(200, function () {
+//         //smooth transition for divs underneath
+//         $(this).css({ "visibility": "hidden", display: 'block' }).slideUp(150);
+//     });
+//     $.ajax({
+//         method: 'POST',
+//         url: '/sale/' + saleId + "?_method=Delete",
+//     }).done(function () {
+//         console.log('item deleted: ' + saleId)
+//     })
+// })
+
+
+$('.inventory-scroll-list').click(async function (e) {
+
+    //selecting the right element
+    if (e.target.matches("button")) {
+        buttonPressed = e.target
+    }
+    else if (e.target.matches("i")) {
+        buttonPressed = e.target.parentElement
+    }
+    let itemId = buttonPressed.id
+
+    //Clone Item Button
+    if (buttonPressed.classList[0] == "cloneItemButton") {
+        itemId = itemId.replace('-clone', '')
+        await cloneItem(itemId)
+    }
+    //Delete Item Button
+    if (buttonPressed.classList[0] == "deleteItemButton") {
+        itemId = itemId.replace('-delete', '')
+        await deleteItem(itemId)
+    }
+
+})
+
+$('.sale-scroll-list').click(async function (e) {
+    //selecting the right element
+    if (e.target.matches("button")) {
+        buttonPressed = e.target
+    }
+    else if (e.target.matches("i")) {
+        buttonPressed = e.target.parentElement
+    }
+    let itemId = buttonPressed.id
+
+    //Clone Item Button
+    // if (buttonPressed.classList[0] == "cloneItemButton") {
+    //     itemId = itemId.replace('-clone', '')
+    //     await cloneItem(itemId)
+    // }
+    //Delete Item Button
+    if (buttonPressed.classList[0] == "deleteSaleButton") {
+        itemId = itemId.replace('-delete', '')
+        await deleteItem(itemId)
+    }
+})

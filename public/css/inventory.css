@@ -81,16 +81,34 @@ h4{
     color: rgb(71, 187, 115);
 }
 
-.greyButton{
+.editItemButton{
     color:grey;
 }
 
-.greyButton:hover{
+.editItemButton:hover{
     color:white;
 }
 
+.editSaleButton{
+    color:grey;
+}
+
+.editSaleButton:hover{
+    color:white;
+}
+
+.cloneSaleButton{
+    color:grey;
+}
+
+.cloneSaleButton:hover{
+    color:white;
+}
 .cloneItemButton{
     color:grey;
+    display: flex;
+    text-align: center;
+    align-content: center;
 }
 .cloneItemButton:hover{
     color:white;

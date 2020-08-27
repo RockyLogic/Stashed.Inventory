@@ -23,7 +23,7 @@
 
 <body>
     <nav id="navbar" class="align-middle navbar navbar-dark navbar-expand-md fixed-top">
-        <a id="navbar-logo" class="navbar-brand" href="#">
+        <a id="navbar-logo" class="navbar-brand" href="/">
             <img src="/images/Icon2.png" width="50" height="50" class="align-middle">
         </a>
 
@@ -179,7 +179,6 @@
                 cumulativeProfit.push(parseFloat(cumulativeProfit[x - 1]) + parseFloat(sales[x].profit.replace(/,/g, "")))
             }
         }
-        console.log(cumulativeProfit);
 
         const myChart = new Chart(ctx, {
             type: 'line',
@@ -190,7 +189,7 @@
                     data: cumulativeProfit,
                     backgroundColor: 'rgba(71, 187, 115, .2)',
                     borderColor: 'rgba(71, 187, 115, 1)',
-                    borderWidth: 3
+                    borderWidth: 5
                 }]
             },
             options: {
