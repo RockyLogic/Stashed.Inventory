@@ -1,5 +1,4 @@
 
-
 cloneItem = (itemId) => {
     $.ajax({
         method: 'POST',
@@ -30,7 +29,7 @@ cloneItem = (itemId) => {
                         <div id="edit-links" class=" ml-auto align-self-end d-flex align-items-center">
 
                         <!-- Add edit button -->
-                        <button type="button" class="greyButton btn ml-auto mr-1 no-outline p-0 p-md-2" data-toggle="modal" data-target="#editItem-<%=item._id%>">
+                        <button type="button" class="editItemButton btn ml-auto mr-1 no-outline p-0 p-md-2" data-toggle="modal" data-target="#editItem-<%=item._id%>">
                             <i class=" fa fa-pencil-square-o ml-3" aria-hidden="true"></i>
                         </button>
 
@@ -261,12 +260,14 @@ cloneSale = (saleId) => {
     })
 }
 
-deleteItem = (itemId) => {
+deleteItem = async (itemId) => {
     // fades out
     itemDisplay = $(`#${itemId}`)
-    itemDisplay.fadeOut(200, function () {
+    await itemDisplay.fadeOut(200, function () {
         //smooth transition for divs underneath
-        itemDisplay.css({ "visibility": "hidden", display: 'block' }).slideUp(150);
+        itemDisplay.css({ "visibility": "hidden", display: 'block' }).slideUp(250, function () {
+            itemDisplay.remove()
+        })
     });
     $.ajax({
         method: 'POST',
@@ -276,12 +277,14 @@ deleteItem = (itemId) => {
     })
 }
 
-deleteSale = (saleId) => {
+deleteSale = async (saleId) => {
     // fades out
     saleDisplay = $(`#${saleId}`)
-    saleDisplay.fadeOut(200, function () {
+    await saleDisplay.fadeOut(200, function () {
         //smooth transition for divs underneath
-        saleDisplay.css({ "visibility": "hidden", display: 'block' }).slideUp(150);
+        saleDisplay.css({ "visibility": "hidden", display: 'block' }).slideUp(250, function () {
+            saleDisplay.remove()
+        })
     });
     $.ajax({
         method: 'POST',

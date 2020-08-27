@@ -81,6 +81,14 @@ h4{
     color: rgb(71, 187, 115);
 }
 
+.newElementButton{
+    color:grey;
+}
+
+.newElementButton:hover{
+    color:white;
+}
+
 .editItemButton{
     color:grey;
 }
