@@ -58,11 +58,14 @@ router.post("/:id/clone", (req, res) => {
 
 // update
 router.patch("/:id", (req, res) => {
+    let formattedPurchasePrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.price.replace(/,/g, ""))
+    formattedPurchasePrice = formattedPurchasePrice.substring(1, formattedPurchasePrice.length)
+
     Item.findByIdAndUpdate(req.params.id, {
         name: req.body.name,
         size: req.body.size,
-        purchasedPrice: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.price),
-        purchasedDatte: req.body.date
+        purchasedPrice: formattedPurchasePrice,
+        purchasedDate: req.body.date
     }, (err, updatedItem) => {
         if (err) {
             console.log(err);

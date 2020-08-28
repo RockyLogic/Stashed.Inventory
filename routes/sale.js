@@ -77,7 +77,7 @@ router.patch("/:id", (req, res) => {
     formattedSoldPrice = formattedSoldPrice.substring(1, formattedSoldPrice.length)
 
     //calc profit
-    let formattedProfit = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(parseFloat(formattedSoldPrice.replace(/,/g, "")) - parseFloat(formattedPurchasePrice.replace(/,/g, "")))
+    let formattedProfit = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(parseFloat(formattedSoldPrice.replace(/,/g, "")) - parseFloat(formattedPurchasePrice.replace(/,/g, ""))).replace(/,/g, "")
     formattedProfit = formattedProfit.substring(1, formattedProfit.length)
 
     Sale.findByIdAndUpdate(req.params.id, {

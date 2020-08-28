@@ -1,7 +1,7 @@
 <div id="<%=sale.id%>" class="inventory-item">
     <div class="d-flex">
-        <div class="item-title"><Strong><%=sale.name%> <span class="buyerName d-none d-md-inline d-lg-none d-xl-inline">(Sold To: <%=sale.buyer%>)</span></Strong></div>
-        <div class="ml-auto item-price"><strong><span class="d-none d-md-inline">$<%=sale.purchasedPrice%></span><span class="d-none d-md-inline d-lg-none d-xl-inline"> -> $<%=sale.soldPrice%></span><span class="profit"> ($<%=sale.profit%>)</span></strong></div>
+        <div class="item-title"><Strong><span id="<%=sale.id%>-saleName"><%=sale.name%></span> <span id="<%=sale.id%>-saleBuyer" class="buyerName d-none d-md-inline d-lg-none d-xl-inline">(Sold To: <%=sale.buyer%>)</span></Strong></div>
+        <div class="ml-auto item-price"><strong><span id="<%=sale.id%>-salePurchasedPrice" class="d-none d-md-inline">$<%=sale.purchasedPrice%></span> -> <span id="<%=sale.id%>-saleSoldPrice" class="d-none d-md-inline d-lg-none d-xl-inline">$<%=sale.soldPrice%></span><span id="<%=sale.id%>-saleProfit" class="profit"> ($<%=sale.profit%>)</span></strong></div>
     </div>
 
     <div class="d-flex" style="max-height: 80%;">
@@ -9,11 +9,11 @@
 
             <div>
                 <div class="item-info" style="max-height: 50%;">
-                    <strong>Size: <%=sale.size%></strong>
+                    <strong id="<%=sale.id%>-saleSize">Size: <%=sale.size%></strong>
                 </div>
                 <div class="item-info" style="max-height: 50%;">
                     <strong>
-                        <spa class="d-none d-md-inline">Date:</spa> <%=sale.purchasedDate%>
+                        <span class="d-none d-md-inline">Date:</span> <span id="<%=sale.id%>-salePurchasedDate"><%=sale.purchasedDate%></span>
                     </strong>
                 </div>
             </div>

@@ -170,3 +170,13 @@ h4{
     text-align: center;
     color: #7988F2;
 }
+
+.editItemSubmitButton{
+    background-color: rgb(121, 136, 242);
+    color: white;
+}
+
+.editSaleSubmitButton{
+    background-color: rgb(121, 136, 242);
+    color: white;
+}

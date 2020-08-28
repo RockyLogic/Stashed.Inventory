@@ -1,7 +1,7 @@
 <div id="<%=item.id%>" class="inventory-item">
     <div class="d-flex">
-        <div class="item-title"><Strong><%=item.name%></Strong></div>
-        <div class="ml-auto item-price"><strong>$<%=item.purchasedPrice%></strong></div>
+        <div id="<%=item.id%>-itemName" class="item-title"><Strong><%=item.name%></Strong></div>
+        <div id="<%=item.id%>-itemPrice" class="ml-auto item-price"><strong>$<%=item.purchasedPrice%></strong></div>
     </div>
 
     <div class="d-flex" style="max-height: 80%;">
@@ -9,11 +9,11 @@
 
             <div>
                 <div class="item-info" style="max-height: 50%;">
-                    <strong>Size: <%=item.size%></strong>
+                    <strong id="<%=item.id%>-itemSize">Size: <%=item.size%></strong>
                 </div>
                 <div class="item-info" style="max-height: 50%;">
                     <strong>
-                        <span class="d-none d-md-inline d-lg-none d-xl-inline">Date:</span> <%=item.purchasedDate%>
+                        <span class="d-none d-md-inline d-lg-none d-xl-inline">Date: </span><span id="<%=item.id%>-itemDate"><%=item.purchasedDate%></span>
                     </strong>
                 </div>
             </div>
@@ -32,7 +32,7 @@
             <%- include("./ItemToSaleModal", {item}); %>
 
             <button id="<%=item.id%>-delete" class="deleteItemButton btn p-0 p-md-2">
-                <i class="fa fa-trash ml-3" aria-hidden="true"></i>
+                <i class="fa fa-trash ml-3 " aria-hidden="true"></i>
             </button>
         </div>
     </div>
