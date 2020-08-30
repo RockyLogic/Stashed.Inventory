@@ -111,12 +111,12 @@ cloneItem = (itemId) => {
                 <div class="modal-body">
                     <div class="form-group row d-flex justify-content-between" style="padding: 0 1rem;">
                         <div class="form-group">
-                            <label for="buyer-text" class="col-form-label" style="color: lightslategray"><strong>Buyer</strong></label>
-                            <input name="buyer" type="text" class="form-control" id="buyer-text" placeholder="Buyer" required>
+                            <label for="<%=item._id%>-buyer-text" class="col-form-label" style="color: lightslategray"><strong>Buyer</strong></label>
+                            <input name="buyer" type="text" class="form-control" id="<%=item._id%>-buyer" placeholder="Buyer" required>
                         </div>
                         <div class="form-group">
-                            <label for="soldPrice-text" class="col-form-label" style="color: lightslategray"><strong>Price Sold</strong></label>
-                            <input name="soldPrice" type="text" class="form-control" id="soldPrice-text" placeholder="Price Sold" required>
+                            <label for="<%=item._id%>-soldPrice-text" class="col-form-label" style="color: lightslategray"><strong>Price Sold</strong></label>
+                            <input name="soldPrice" type="text" class="form-control" id="<%=item._id%>-soldPrice" placeholder="Price Sold" required>
                         </div>
                     </div>
 
@@ -156,7 +156,7 @@ cloneSale = (saleId) => {
             template = `<div id="<%=sale._id%>" class="inventory-item">
             <div class="d-flex">
                 <div class="item-title"><Strong><span id="<%=sale._id%>-saleName"><%=sale.name%></span> <span id="<%=sale._id%>-saleBuyer" class="buyerName d-none d-md-inline d-lg-none d-xl-inline">(Sold To: <%=sale.buyer%>)</span></Strong></div>
-                <div class="ml-auto item-price"><strong><span id="<%=sale._id%>-salePurchasedPrice" class="d-none d-md-inline">$<%=sale.purchasedPrice%></span> -> <span id="<%=sale._id%>-saleSoldPrice" class="d-none d-md-inline d-lg-none d-xl-inline">$<%=sale.soldPrice%></span><span id="<%=sale._id%>-saleProfit" class="profit"> ($<%=sale.profit%>)</span></strong></div>
+                <div class="ml-auto item-price"><strong><span id="<%=sale._id%>-salePurchasedPrice" class="d-none d-md-inline">$<%=sale.purchasedPrice%> -> </span><span id="<%=sale._id%>-saleSoldPrice">$<%=sale.soldPrice%></span><span id="<%=sale._id%>-saleProfit" class="profit d-none d-md-inline d-lg-none d-xl-inline"> ($<%=sale.profit%>)</span></strong></div>
             </div>
         
             <div class="d-flex" style="max-height: 80%;">
@@ -233,13 +233,14 @@ cloneSale = (saleId) => {
                             <div class="modal-footer">
                                 <div class="form-group">
                                     <button type="button" class="btn" style="background-color: lightslategray;" data-dismiss="modal">Close</button>
-                                    <button id="<%=sale._id%>-editSaleSubmit" type="submit" class="editSaleSubmitButton btn">Submit</button>
+                                    <button id="<%=sale._id%>-editSaleSubmit" type="submit" class="editSaleSubmitButton btn" data-dismiss="modal">Submit</button>
                                 </div>
                             </div>
                 
                         </div>
                     </div>
                 </div>
+                <!-- </form> -->
         
                     <button id="<%=sale._id%>-clone" class="cloneSaleButton btn p-0 p-md-2">
                         <i class="fa fa-clone ml-3" aria-hidden="true"></i>
@@ -340,11 +341,169 @@ editSale = function (saleId) {
         $(`#${saleId}-saleName`).html(`<strong>${name}</strong>`)
         $(`#${saleId}-saleSize`).html(`Size: ${size}`)
         $(`#${saleId}-saleBuyer`).html(`(Sold To: ${buyer})`)
-        $(`#${saleId}-salePurchasedPrice`).html(`<strong>${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(purchasedPrice)}</strong>`)
+        $(`#${saleId}-salePurchasedPrice`).html(`<strong>${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(purchasedPrice)} -> </strong>`)
         $(`#${saleId}-salePurchasedDate`).html(purchasedDate)
-        $(`#${saleId}-saleSoldPrice`).html(`$${soldPrice}`)
+        $(`#${saleId}-saleSoldPrice`).html(`$${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(soldPrice)}`)
         // $(`#${saleId}-saleProfit`).html(`$(${profit})`)
         $(this).fadeIn(300)
+    })
+}
+
+newItem = function () {
+    let name = $('#new-item-name').val()
+    let size = $('#new-item-size').val()
+    let price = $('#new-item-price').val()
+    let date = $('#new-item-date').val()
+
+    $.ajax({
+        method: 'POST',
+        url: '/item',
+        data: {
+            name,
+            size,
+            price,
+            date,
+        },
+        success: function (resp) {
+            template = `<div id="<%=item._id%>" class="inventory-item">
+            <div class="d-flex">
+                <div id="<%=item._id%>-itemName" class="item-title"><Strong><%=item.name%></Strong></div>
+                <div id="<%=item._id%>-itemPrice" class="ml-auto item-price"><strong>$<%=item.purchasedPrice%></strong></div>
+            </div>
+        
+            <div class="d-flex" style="max-height: 80%;">
+                <div>
+        
+                    <div>
+                        <div class="item-info" style="max-height: 50%;">
+                            <strong id="<%=item._id%>-itemSize">Size: <%=item.size%></strong>
+                        </div>
+                        <div class="item-info" style="max-height: 50%;">
+                            <strong>
+                                <span class="d-none d-md-inline d-lg-none d-xl-inline">Date:</span> <span id="<%=item.id%>-itemDate"><%=item.purchasedDate%></span>
+                            </strong>
+                        </div>
+                    </div>
+        
+                </div>
+        
+                <!-- Buttons for each item -->
+                <div id="edit-links" class=" ml-auto align-self-end d-flex align-items-center">
+        
+                <!-- Add edit button -->
+                <button type="button" class="editItemButton btn ml-auto mr-1 no-outline p-0 p-md-2" data-toggle="modal" data-target="#editItem-<%=item._id%>">
+                    <i class=" fa fa-pencil-square-o ml-3" aria-hidden="true"></i>
+                </button>
+                
+                <!-- Add edit modal -->
+                <!-- <form action="/item/<%=item._id%>?_method=PATCH" method="POST"> -->
+                <div class="modal fade" id="editItem-<%=item._id%>" tabindex="-1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                
+                            <!-- modal header -->
+                            <div class="modal-header" style="padding-bottom: 0;">
+                                <h5 class="modal-title" id="modalLabel">Edit Item</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true" style="color: white;">&times;</span>
+                                </button>
+                            </div>
+                
+                            <!-- modal body -->
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label" style="color: lightslategray"><strong>Name</strong></label>
+                                    <input name="name" type="text" class="form-control" id="<%=item._id%>-edit-name" value="<%=item.name%>" required>
+                                </div>
+                                <div class="form-group row d-flex justify-content-between" style="padding: 0 1rem;">
+                                    <div class="form-group">
+                                        <label for="size-text" class="col-form-label" style="color: lightslategray"><strong>Size</strong></label>
+                                        <input name="size" type="text" class="form-control" id="<%=item._id%>-edit-size" value="<%=item.size%>" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label" style="color: lightslategray"><strong>Price</strong></label>
+                                        <input name="price" type="text" class="form-control" id="<%=item._id%>-edit-price" value="<%=item.purchasedPrice%>" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date-text" class="col-form-label" style="color: lightslategray"><strong>Date</strong></label>
+                                        <input name="date" type="text" class="form-control" id="<%=item._id%>-edit-date" value="<%=item.purchasedDate%>" required>
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <!-- modal footer -->
+                            <div class="modal-footer">
+                                <div class="form-group">
+                                    <button type="button" class="btn" style="background-color: lightslategray;" data-dismiss="modal">Close</button>
+                                    <button id="<%=item._id%>-editItemSubmit" type="submit" class="editItemSubmitButton btn" data-dismiss="modal">Submit</button>
+                                </div>
+                            </div>
+                
+                        </div>
+                    </div>
+                </div>
+                <!-- </form> -->
+        
+                    <button id="<%=item._id%>-clone" class="cloneItemButton btn p-0 p-md-2">
+                        <i class="fa fa-clone ml-3" aria-hidden="true"></i>
+                    </button>
+        
+                    <!-- Item to Sale button -->
+                    <button type="button" class="sellButton btn ml-auto mr-1 no-outline p-0 p-md-2" data-toggle="modal" data-target="#sellItem-<%=item._id%>">
+                        <i class="fa fa-usd ml-3" aria-hidden="true"></i>
+                    </button>
+
+                    <!-- Add new inventory modal -->
+                    <form action="sale/<%=item._id%>/sell" method="POST">
+                        <div class="modal fade" id="sellItem-<%=item._id%>" tabindex="-1" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- modal header -->
+                                    <div class="modal-header" style="padding-bottom: 0;">
+                                        <h5 class="modal-title" id="modalLabel">Sell Item</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true" style="color: white;">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <!-- modal body -->
+                                    <div class="modal-body">
+                                        <div class="form-group row d-flex justify-content-between" style="padding: 0 1rem;">
+                                            <div class="form-group">
+                                                <label for="<%=item._id%>-buyer-text" class="col-form-label" style="color: lightslategray"><strong>Buyer</strong></label>
+                                                <input name="buyer" type="text" class="form-control" id="<%=item._id%>-buyer" placeholder="Buyer" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="<%=item._id%>-soldPrice-text" class="col-form-label" style="color: lightslategray"><strong>Price Sold</strong></label>
+                                                <input name="soldPrice" type="text" class="form-control" id="<%=item._id%>-soldPrice" placeholder="Price Sold" required>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- modal footer -->
+                                    <div class="modal-footer">
+                                        <div class="form-group">
+                                            <button type="button" class="btn" style="background-color: lightslategray;" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn" style="background-color: rgb(121, 136, 242); color:white;">Sell</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+        
+                    <button id="<%=item._id%>-delete" class="deleteItemButton btn p-0 p-md-2">
+                        <i class="fa fa-trash ml-3 " aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>`
+            var html = ejs.render(template, { item: resp })
+            $(html).hide().appendTo('.inventory-scroll-list').fadeIn(300)
+        }
     })
 }
 
@@ -420,4 +579,8 @@ $('.sale-scroll-list').click(async function (e) {
     }
 
     buttonPressed = {}
+})
+
+$('.newItemButtonSubmit').click(function () {
+    newItem()
 })

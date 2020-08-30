@@ -81,11 +81,19 @@ h4{
     color: rgb(71, 187, 115);
 }
 
-.newElementButton{
+.newItemButton{
     color:grey;
 }
 
-.newElementButton:hover{
+.newItemButton:hover{
+    color:white;
+}
+
+.newSaleButton{
+    color:grey;
+}
+
+.newSaleButton:hover{
     color:white;
 }
 
@@ -179,4 +187,15 @@ h4{
 .editSaleSubmitButton{
     background-color: rgb(121, 136, 242);
     color: white;
+}
+
+
+.newItemButtonSubmit{
+    background-color: rgb(121, 136, 242); 
+    color:white;
+}
+
+.newSaleButtonSubmit{
+    background-color: rgb(121, 136, 242); 
+    color:white;
 }
