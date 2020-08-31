@@ -71,7 +71,7 @@ router.patch("/:id", (req, res) => {
             console.log(err);
             res.redirect("/inventory")
         }
-        res.redirect("/inventory")
+        res.send(updatedItem)
     })
 })
 

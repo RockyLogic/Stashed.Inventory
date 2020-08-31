@@ -146,12 +146,17 @@ h4{
     color:rgb(175, 0, 0);
 }
 
-.sellButton{
+.sellInventoryButton{
     color:rgb(71, 187, 115);
 }
 
-.sellButton:hover{
+.sellInventoryButton:hover{
     color:rgb(0, 255, 100);
+}
+
+.sellInventoryButtonSubmit{
+    background-color: rgb(121, 136, 242); 
+    color:white;
 }
 
 .statistics-sections{

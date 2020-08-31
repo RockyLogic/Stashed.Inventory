@@ -92,7 +92,7 @@ router.patch("/:id", (req, res) => {
         if (err) {
             console.log(err);
         }
-        res.redirect("/inventory")
+        res.send(updatedSale)
     })
 })
 
@@ -113,13 +113,13 @@ router.post("/:id/sell", (req, res) => {
     const itemId = req.params.id
     Item.findById(itemId, (err, foundItem) => {
 
-        let formattedSoldPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.soldPrice)
+        let formattedSoldPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(req.body.soldPrice.replace(/,/g, ""))
         //removes the currency sign
         formattedSoldPrice = formattedSoldPrice.substring(1, formattedSoldPrice.length)
         //calc profit
-        let formattedProfit = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(formattedSoldPrice - foundItem.purchasedPrice)
-        formattedProfit = formattedProfit.substring(1, formattedProfit.length)
+        let formattedProfit = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(formattedSoldPrice.replace(/,/g, "") - foundItem.purchasedPrice)
 
+        formattedProfit = formattedProfit.replace(/,/g, "").replace("$", "")
         var newSale = {
             name: foundItem.name,
             size: foundItem.size,
@@ -139,7 +139,7 @@ router.post("/:id/sell", (req, res) => {
                     if (err) {
                         console.log(err)
                     }
-                    res.redirect("/inventory")
+                    res.send(createdSale)
                 })
             }
         })
