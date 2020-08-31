@@ -4,53 +4,53 @@
 </button>
 
 <!-- Add new inventory modal -->
-<!-- <form action="/item" method="POST"> -->
-<div class="modal fade" id="createNewItem" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
+<form>
+    <div class="modal fade" id="createNewItem" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-            <!-- modal header -->
-            <div class="modal-header" style="padding-bottom: 0;">
-                <h5 class="modal-title" id="modalLabel">New Inventory</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" style="color: white;">&times;</span>
-                </button>
-            </div>
-
-            <!-- modal body -->
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="new-item-name" class="col-form-label" style="color: lightslategray"><strong>Name</strong></label>
-                    <input name="name" type="text" class="form-control" id="new-item-name" placeholder="Name" required>
+                <!-- modal header -->
+                <div class="modal-header" style="padding-bottom: 0;">
+                    <h5 class="modal-title" id="modalLabel">New Inventory</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="color: white;">&times;</span>
+                    </button>
                 </div>
-                <div class="form-group row d-flex justify-content-between" style="padding: 0 1rem;">
+
+                <!-- modal body -->
+                <div class="modal-body">
                     <div class="form-group">
-                        <label for="new-item-size" class="col-form-label" style="color: lightslategray"><strong>Size</strong></label>
-                        <input name="size" type="text" class="form-control" id="new-item-size" placeholder="Size" required>
+                        <label for="new-item-name" class="col-form-label" style="color: lightslategray"><strong>Item Name</strong></label>
+                        <input autocomplete="off" type="text" class="form-control" id="new-item-name" placeholder="Name" required>
                     </div>
-                    <div class="form-group">
-                        <label for="new-item-price" class="col-form-label" style="color: lightslategray"><strong>Price</strong></label>
-                        <input name="price" type="text" class="form-control" id="new-item-price" placeholder="Price" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="new-item-date" class="col-form-label" style="color: lightslategray"><strong>Date</strong></label>
-                        <input name="date" type="text" class="form-control" id="new-item-date" value="<%= date%>" required>
+                    <div class="form-group row d-flex justify-content-between" style="padding: 0 1rem;">
+                        <div class="form-group">
+                            <label for="new-item-size" class="col-form-label" style="color: lightslategray"><strong>Size</strong></label>
+                            <input autocomplete="off" name="size" type="text" class="form-control" id="new-item-size" placeholder="Size" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-item-price" class="col-form-label" style="color: lightslategray"><strong>Price</strong></label>
+                            <input autocomplete="off" name="price" type="text" class="form-control" id="new-item-price" placeholder="Price" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-item-date" class="col-form-label" style="color: lightslategray"><strong>Date</strong></label>
+                            <input autocomplete="off" name="date" type="text" class="form-control" id="new-item-date" value="<%= date%>" required>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- modal footer -->
-            <div class="modal-footer">
-                <div class="form-group">
-                    <button type="button" class="btn" style="background-color: lightslategray;" data-dismiss="modal">Close</button>
-                    <button type="submit" class="newItemButtonSubmit btn">Add
-                        To
-                        Inventory</button>
+                <!-- modal footer -->
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <button type="button" class="btn" style="background-color: lightslategray;" data-dismiss="modal">Close</button>
+                        <button type="submit" class="newItemButtonSubmit btn" data-dismiss="modal">Add
+                            To
+                            Inventory</button>
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
-</div>
-<!-- </form> -->
+</form>
 </div>

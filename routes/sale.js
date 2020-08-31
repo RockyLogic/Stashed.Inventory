@@ -16,7 +16,7 @@ router.post("/", (req, res) => {
 
     //calc profit
     let formattedProfit = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(parseFloat(formattedSoldPrice.replace(/,/g, "")) - parseFloat(formattedPurchasePrice.replace(/,/g, "")))
-    formattedProfit = formattedProfit.substring(1, formattedProfit.length)
+    formattedProfit = formattedProfit.replace(/,/g, "").replace("$", "")
 
     var newSale = {
         name: req.body.name,
@@ -34,7 +34,7 @@ router.post("/", (req, res) => {
             console.log(err);
             res.redirect("/inventory")
         } else {
-            res.redirect("/inventory")
+            res.send(createdSale)
         }
     })
 })
@@ -78,7 +78,7 @@ router.patch("/:id", (req, res) => {
 
     //calc profit
     let formattedProfit = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(parseFloat(formattedSoldPrice.replace(/,/g, "")) - parseFloat(formattedPurchasePrice.replace(/,/g, ""))).replace(/,/g, "")
-    formattedProfit = formattedProfit.substring(1, formattedProfit.length)
+    formattedProfit = formattedProfit.replace(/,/g, "").replace("$", "")
 
     Sale.findByIdAndUpdate(req.params.id, {
         name: req.body.name,

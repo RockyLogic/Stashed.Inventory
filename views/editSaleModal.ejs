@@ -4,62 +4,62 @@
 </button>
 
 <!-- Add edit modal -->
-<!-- <form> -->
-<div class="modal fade" id="editSale-<%=sale._id%>" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
+<form>
+    <div class="modal fade" id="editSale-<%=sale._id%>" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-            <!-- modal header -->
-            <div class="modal-header" style="padding-bottom: 0;">
-                <h5 class="modal-title" id="modalLabel">Edit Sale</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" style="color: white;">&times;</span>
-                </button>
+                <!-- modal header -->
+                <div class="modal-header" style="padding-bottom: 0;">
+                    <h5 class="modal-title" id="modalLabel">Edit Sale</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="color: white;">&times;</span>
+                    </button>
+                </div>
+
+                <!-- modal body -->
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label" style="color: lightslategray"><strong>Sale Name</strong></label>
+                        <input autocomplete="off" type="text" class="form-control" id="<%=sale._id%>-edit-name" value="<%=sale.name%>" required>
+                    </div>
+                    <div class="form-group row d-flex justify-content-between" style="padding: 0 1rem;">
+                        <div class="form-group">
+                            <label for="size-text" class="col-form-label" style="color: lightslategray"><strong>Size</strong></label>
+                            <input autocomplete="off" name="size" type="text" class="form-control" id="<%=sale._id%>-edit-size" value="<%=sale.size%>" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="price-text" class="col-form-label" style="color: lightslategray"><strong>Price</strong></label>
+                            <input autocomplete="off" name="price" type="text" class="form-control" id="<%=sale._id%>-edit-purchasedPrice" value="<%=sale.purchasedPrice%>" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date-text" class="col-form-label" style="color: lightslategray"><strong>Date</strong></label>
+                            <input autocomplete="off" name="date" type="text" class="form-control" id="<%=sale._id%>-edit-purchasedDate" value="<%=sale.purchasedDate%>" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row d-flex justify-content-between" style="padding: 0 1rem;">
+                        <div class="form-group">
+                            <label for="buyer-text" class="col-form-label" style="color: lightslategray"><strong>Buyer</strong></label>
+                            <input autocomplete="off" name="buyer" type="text" class="form-control" id="<%=sale._id%>-edit-buyer" value="<%=sale.buyer%>" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="soldPrice-text" class="col-form-label" style="color: lightslategray"><strong>Price Sold</strong></label>
+                            <input autocomplete="off" name="soldPrice" type="text" class="form-control" id="<%=sale._id%>-edit-soldPrice" value="<%=sale.soldPrice%>" required>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- modal footer -->
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <button type="button" class="btn" style="background-color: lightslategray;" data-dismiss="modal">Close</button>
+                        <button id="<%=sale._id%>-editSaleSubmit" type="submit" class="editSaleSubmitButton btn" data-dismiss="modal">Submit</button>
+                    </div>
+                </div>
+
             </div>
-
-            <!-- modal body -->
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="recipient-name" class="col-form-label" style="color: lightslategray"><strong>Name</strong></label>
-                    <input name="name" type="text" class="form-control" id="<%=sale._id%>-edit-name" value="<%=sale.name%>" required>
-                </div>
-                <div class="form-group row d-flex justify-content-between" style="padding: 0 1rem;">
-                    <div class="form-group">
-                        <label for="size-text" class="col-form-label" style="color: lightslategray"><strong>Size</strong></label>
-                        <input name="size" type="text" class="form-control" id="<%=sale._id%>-edit-size" value="<%=sale.size%>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="price-text" class="col-form-label" style="color: lightslategray"><strong>Price</strong></label>
-                        <input name="price" type="text" class="form-control" id="<%=sale._id%>-edit-purchasedPrice" value="<%=sale.purchasedPrice%>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="date-text" class="col-form-label" style="color: lightslategray"><strong>Date</strong></label>
-                        <input name="date" type="text" class="form-control" id="<%=sale._id%>-edit-purchasedDate" value="<%=sale.purchasedDate%>" required>
-                    </div>
-                </div>
-
-                <div class="form-group row d-flex justify-content-between" style="padding: 0 1rem;">
-                    <div class="form-group">
-                        <label for="buyer-text" class="col-form-label" style="color: lightslategray"><strong>Buyer</strong></label>
-                        <input name="buyer" type="text" class="form-control" id="<%=sale._id%>-edit-buyer" value="<%=sale.buyer%>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="soldPrice-text" class="col-form-label" style="color: lightslategray"><strong>Price Sold</strong></label>
-                        <input name="soldPrice" type="text" class="form-control" id="<%=sale._id%>-edit-soldPrice" value="<%=sale.soldPrice%>" required>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- modal footer -->
-            <div class="modal-footer">
-                <div class="form-group">
-                    <button type="button" class="btn" style="background-color: lightslategray;" data-dismiss="modal">Close</button>
-                    <button id="<%=sale._id%>-editSaleSubmit" type="submit" class="editSaleSubmitButton btn" data-dismiss="modal">Submit</button>
-                </div>
-            </div>
-
         </div>
     </div>
-</div>
-<!-- </form> -->
+</form>
