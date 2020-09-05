@@ -12,6 +12,7 @@
     <!--BootStrap 4-->
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/preloader.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type="text/css" href="/css/landing.css">
 
@@ -19,6 +20,10 @@
 </head>
 
 <body>
+    <div class="wrapper">
+        <div class="preloader"></div>
+    </div>
+
     <nav id="navbar" class="align-middle navbar navbar-dark navbar-expand-md">
         <a id="navbar-logo" class="navbar-brand" href="#">
             <img src="/images/Icon2.png" width="50" height="50" class="align-middle">
@@ -34,14 +39,11 @@
             <!--Right Side Nav Bar-->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#home">Home</a>
+                    <a class="nav-link" href="#features">Features</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#feature">Features</a>
-                </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="#faq">FAQ</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" href="#contact">Help</a>
                 </li>
@@ -61,21 +63,78 @@
                 transactions,
                 take profit. Say goodbye to the spreadsheet.
             </div>
-            <button id="home-buy-button" type="button" class="btn mx-auto d-flex"><strong>Go To DashBoard</strong></button>
-            <hr class="divider">
+            <!-- <hr class="divider"> -->
         </div>
 
     </section>
 
     <section id="features">
         <div class="container">
+            <div class="displaySection row d-flex justify-content-around">
+                <div class="col-12 col-md-5" style="width:100%;">
+                    <img class="img-fluid rounded mx-auto d-block" src="/images/Inventory-Purple.png">
+                </div>
+                <div class="col-12 col-md-6 d-flex align-items-center">
+                    <div>
+                        <h1><strong>Inventory</strong></h1>
+                        <h3>Manage and track your inventory with ease</h3>
+                    </div>
+                </div>
+            </div>
 
+            <div class="displaySection row d-flex justify-content-around">
+                <div class="col-12 col-md-6 d-flex align-items-center">
+                    <div>
+                        <h1><strong>Transactions</strong></h1>
+                        <h3>Simple way to log and update transactions</h3>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <img class="img-fluid rounded mx-auto d-block" src="/images/Sales-Purple.png">
+                </div>
+            </div>
+
+            <div class="displaySection row d-flex justify-content-around">
+                <div class="col-12 col-md-7">
+                    <img class="img-fluid rounded mx-auto d-block" src="/images/Stats-Purple.png">
+                </div>
+                <div class="col-12 col-md-5 d-flex align-items-center">
+                    <div>
+                        <h1><strong>Statistics</strong></h1>
+                        <h3>Overview of your business</h3>
+                    </div>
+                </div>
+            </div>
+
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+
+    </section>
+
+    <!-- contact -->
+    <section id="contact" style="background-color: rgba(45, 47, 73, 0.5); padding: 100px" class=" d-flex align-items-center">
+        <div class="container" style="text-align: center;">
+            <div class="row">
+                <div class="col-6">
+                    <h3>Would you like some help?</h3>
+                    <h3>Find us at:</h3>
+                </div>
+                <div class="col-6">
+                    <div>
+                        <h3>Discord: @Rocky#0001</h3>
+                        <h3>Twitter: @RockyD3v</h3>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- footer -->
     <section id="footer" class="d-flex d-none d-md-flex">
         <div class="justify-content-between footer-text align-items-center">
-            <div><strong>Site By: RockyD3v</strong></div>
+            <div><strong>Site By: Rocky#0001</strong></div>
             <div><strong>Copyright © 2020 Stashed.io. All Rights Reserved</strong></div>
         </div>
     </section>
@@ -84,5 +143,6 @@
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="/js/preloader.js"></script>
 
 </html>

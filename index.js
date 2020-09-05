@@ -75,6 +75,11 @@ app.get("/inventory", async (req, res) => {
     })
 })
 
+//catch all route
+app.get('*', function (req, res) {
+    res.redirect("/")
+});
+
 // Initate
 app.listen(port, () => {
     sendToLogs(`Operating on port: ${port}`)

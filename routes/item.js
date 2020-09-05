@@ -86,4 +86,9 @@ router.delete("/:id", (req, res) => {
     })
 })
 
+//catch all route
+router.get('*', function (req, res) {
+    res.redirect("/inventory")
+});
+
 module.exports = router;
