@@ -8,7 +8,7 @@ $(function () {
         Observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.intersectionRatio > 0) {
-                    entry.target.style.animation = `animation1 1s ${entry.target.dataset.delay} forwards ease-out`
+                    entry.target.style.animation = `animation1 1s ${entry.target.dataset.delay} ease-out`
                 }
             })
         })

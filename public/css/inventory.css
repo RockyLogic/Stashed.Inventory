@@ -202,9 +202,12 @@ h4{
     color:white;
 }
 
+
+
 .init {
     opacity: 0;
 }
+
 @keyframes animation1 {
     from {
         transform: translateY(50px);
