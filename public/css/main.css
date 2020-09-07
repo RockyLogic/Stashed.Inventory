@@ -45,3 +45,14 @@ input::placeholder{
     background: rgb(27, 27, 38);
     border-radius: 20px;
 }
+
+@keyframes animation1 {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

@@ -3,9 +3,6 @@
     padding-top: 10vh;
 }
 
-#statistic{
-    height: 95vh;
-}
 .inventory-block{
     height: 95%;
     padding: 30px;
@@ -203,4 +200,18 @@ h4{
 .newSaleButtonSubmit{
     background-color: rgb(121, 136, 242); 
     color:white;
+}
+
+.init {
+    opacity: 0;
+}
+@keyframes animation1 {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

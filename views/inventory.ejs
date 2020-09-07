@@ -11,14 +11,13 @@
     <!--BootStrap 4-->
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/preloader.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type="text/css" href="/css/inventory.css">
     <link rel="stylesheet" type="text/css" href="/css/modal.css">
 
     <title>Stashed</title>
 
-    <!-- Chart js cdn -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
 
 <body>
@@ -61,7 +60,7 @@
         <div class="container-fluid d-flex justify-content-center" style="height: 100%;">
             <div class="row align-items-center justify-content-around" style="width:100%;">
 
-                <div id="inventory-list" class="inventory-block col-12 col-lg-5">
+                <div id="inventory-list" class="inventory-block col-12 col-lg-5 init" data-delay="0s">
                     <div class="d-flex">
                         <h4>Inventory</h4>
                         <%- include("./newItemModal") %>
@@ -75,7 +74,7 @@
                         </div>
                     </div>
 
-                    <div id="sale-list" class="inventory-block col-12 col-lg-6">
+                    <div id="sale-list" class="inventory-block col-12 col-lg-6 init" data-delay="0.5s">
 
                         <div class="d-flex">
                             <h4>Sales</h4>
@@ -92,7 +91,7 @@
                         </div>
                     </div>
 
-                    <div class=" inventory-block col-12 col-lg-11" style="height: auto;">
+                    <div id="stats" class=" inventory-block col-12 col-lg-11 init" style="height: auto;" data-delay="1s">
                         <h4>Statistics</h4>
                         <div class="row d-flex justify-content-center justify-content-lg-around" style="width: 100%; height: 90%; margin: 0;">
                             <div class="col-12 col-lg-4 statistics-sections d-flex align-content-center flex-column">
@@ -100,58 +99,36 @@
                                     <div class="statistics-text">
                                         Number of items in inventory
                                     </div>
-                                    <div class="statistics-text-highlighted">
-                                        <%=itemList.length%>
-                                    </div>
+                                    <div id="numItem" class="statistics-text-highlighted"></div>
                                 </div>
                                 <div class="statistics-text-block">
                                     <div class="statistics-text">
                                         Value of Inventory
                                     </div>
-                                    <div class="statistics-text-highlighted">
-                                        <% let inventoryTotal = 0; %>
-                                        <% itemList.forEach((item) => { %>
-                                        <% inventoryTotal += parseFloat(item.purchasedPrice) %>
-                                        <% }) %>
-                                        <%= new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(inventoryTotal) %>
-                                    </div>
+                                    <div id="inventoryValue" class="statistics-text-highlighted"></div>
                                 </div>
                                 <div class="statistics-text-block">
                                     <div class="statistics-text">
                                         Number of Sales
                                     </div>
-                                    <div class="statistics-text-highlighted">
-                                        <%=saleList.length%>
-                                    </div>
+                                    <div id="numSale" class="statistics-text-highlighted"></div>
                                 </div>
                                 <div class="statistics-text-block">
                                     <div class="statistics-text">
                                         Net Sales
                                     </div>
-                                    <div class="statistics-text-highlighted">
-                                        <% let saleTotal = 0; %>
-                                        <% saleList.forEach((sale) => { %>
-                                        <% saleTotal += parseFloat(sale.soldPrice) %>
-                                        <% }) %>
-                                        <%= new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(saleTotal) %>
-                                    </div>
+                                    <div id="netSale" class="statistics-text-highlighted"></div>
                                 </div>
-                                <div id="statistics" class="statistics-text-block">
+                                <div class="statistics-text-block">
                                     <div class="statistics-text">
                                         Profit
                                     </div>
-                                    <div class="statistics-text-highlighted" style="color:rgb(74, 255, 147)">
-                                        <% let profitTotal = 0; %>
-                                        <% saleList.forEach((sale) => { %>
-                                        <% profitTotal += parseFloat(sale.profit) %>
-                                        <% }) %>
-                                        <%= new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(profitTotal) %>
-                                    </div>
+                                    <div id="profit" class="statistics-text-highlighted" style="color:rgb(74, 255, 147)"></div>
                                 </div>
                             </div>
 
                             <!-- graph -->
-                            <div class="col-12 col-lg-7 statistics-sections d-flex align-items-center" style="padding: 30px; background-color: rgb(45, 47, 73);">
+                            <div class="col-12 col-lg-7 statistics-sections d-flex align-items-center" style="padding: 30px; background-color: rgb(45, 47, 73); min-height:70vh;">
                                 <canvas id="myChart" width="100%" height="100%"></canvas>
                             </div>
                         </div>
@@ -162,13 +139,24 @@
 
 
     <!-- Scripts -->
-    <script src="/js/ejs.js"></script>
+    <script src="/js/ejs.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <!-- animations -->
     <script src="/js/inventory.js"></script>
+
+    <!-- Ajax buttons -->
+    <script src="/js/inventoryAjax.js"></script>
+
+    <!-- preloader -->
     <script src="/js/preloader.js"></script>
 
+    <!-- Chart js cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    <!-- Line Graph -->
     <script type="text/javascript">
         const ctx = document.getElementById('myChart');
         let sales = JSON.parse('<%- JSON.stringify(saleList) %>')
@@ -226,6 +214,47 @@
                 },
             }
         });
+    </script>
+
+    <script>
+        let itemList = JSON.parse('<%- JSON.stringify(itemList) %>')
+        let saleList = JSON.parse('<%- JSON.stringify(saleList) %>')
+
+        function numItems(itemList) {
+            $("#numItem").html(itemList.length)
+        }
+        function numSales(saleList) {
+            $("#numSale").html(saleList.length)
+        }
+        function itemValue(itemList) {
+            let inventoryTotal = 0;
+            itemList.forEach((item) => {
+                inventoryTotal += parseFloat(item.purchasedPrice)
+            })
+            $("#inventoryValue").html(new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(inventoryTotal))
+        }
+        function netSale(saleList) {
+            let saleTotal = 0;
+            saleList.forEach((sale) => {
+                saleTotal += parseFloat(sale.soldPrice)
+            })
+            $("#netSale").html(new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(saleTotal))
+        }
+        function profit(saleList) {
+            let profitTotal = 0;
+            saleList.forEach((sale) => {
+                profitTotal += parseFloat(sale.profit)
+            })
+            $("#profit").html(new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(profitTotal))
+        }
+        function generateStats(itemList, saleList) {
+            numItems(itemList)
+            numSales(saleList)
+            itemValue(itemList)
+            netSale(saleList)
+            profit(saleList)
+        }
+        generateStats(itemList, saleList)
     </script>
 </body>
 

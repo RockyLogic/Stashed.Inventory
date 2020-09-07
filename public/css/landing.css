@@ -81,7 +81,7 @@
 }
 
 .displaySection{
-    margin-bottom: 5%;
+    margin-bottom: 50px;
 }
 
 #contact {
@@ -97,4 +97,8 @@
     height: 100%;
     width: 100%;
     text-align: center;
+}
+
+.caption{
+    opacity: 0;
 }
