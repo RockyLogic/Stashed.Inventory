@@ -14,7 +14,6 @@ inventoryObserver = new IntersectionObserver((entries) => {
     })
 })
 inventoryObserver.observe(inventoryText)
-// inventoryObserver.observe(inventoryImage)
 
 saleObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -24,7 +23,6 @@ saleObserver = new IntersectionObserver((entries) => {
     })
 })
 saleObserver.observe(saleText)
-// saleObserver.observe(saleImage)
 
 
 statObserver = new IntersectionObserver((entries) => {
@@ -35,4 +33,3 @@ statObserver = new IntersectionObserver((entries) => {
     })
 })
 statObserver.observe(statText)
-// statObserver.observe(statImage)
